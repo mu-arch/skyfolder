@@ -1,4 +1,5 @@
-# JollyFolder
+# <img align="right" src="static/folder_blue.png" alt="JollyFolder Logo" title="JollyFolder"> JollyFolder
+
 
 **A Barebones program to quickly share folders on the network.**
 
