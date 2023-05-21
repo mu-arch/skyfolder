@@ -28,7 +28,8 @@ async fn init() -> Result<(), AppErrorInternal> {
     dbg!(result);
 
     let app = axum::Router::new()
-        .route("/*path", get(debug_handler::new(request_handler::handle_path)));
+        //.route("/", get(request_handler::handle_path))
+        .route("/*path", get(request_handler::handle_path));
 
     Server::bind(&"0.0.0.0:8080".parse()?)
         .serve(app.into_make_service())

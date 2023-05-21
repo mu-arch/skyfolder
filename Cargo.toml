@@ -8,13 +8,10 @@ edition = "2021"
 [dependencies]
 tokio = { version = "1.28.1", features = ["macros","rt-multi-thread", "signal", "sync", "full"] }
 
-axum = "0.6.18"
+axum = { version = "0.6.18", features = ["macros"]}
 askama = "0.12.0"
 askama_axum = "0.3.0"
 hyper = "0.14.26"
 
 
 clap = { version = "4.3.0", features = ["cargo"]}
-
-
-axum-debug = "0.3.3"

@@ -28,22 +28,20 @@ use axum::http::{StatusCode};
 use axum::response::{IntoResponse, Response};
 use hyper::Body;
 
-// Assume `AppErrorExternal` is defined somewhere.
 #[derive(Debug)]
-pub struct AppErrorExternal {
-    // Fields go here.
+pub enum AppErrorExternal {
+    TestError
 }
 
-impl AppErrorExternal {
-    pub fn into_http_response(self) -> Response {
-        let error_message = format!("An error occurred: {:?}", self);
+impl IntoResponse for AppErrorExternal {
+    fn into_response(self) -> Response {
 
-        let body = match self {
-            _ => "something went wrong"
+        let (status, error_message) = match self {
+            AppErrorExternal::TestError => (StatusCode::INTERNAL_SERVER_ERROR, "something went wrong"),
+            _ => (StatusCode::INTERNAL_SERVER_ERROR, "something went wrong")
         };
 
-        // its often easiest to implement `IntoResponse` by calling other implementations
-        (StatusCode::INTERNAL_SERVER_ERROR, body).into_response()
+        (status, error_message).into_response()
     }
 }
 

@@ -4,7 +4,7 @@ use askama::Template;
 use axum::response::{Html, IntoResponse, Response};
 use hyper::Body;
 use tokio::fs::File;
-use axum_debug::debug_handler;
+use axum::debug_handler;
 
 pub enum ResponseWrapper {
     File(String),
@@ -54,7 +54,9 @@ struct DirectoryListing {
     name: String,
     age: u8,
 }
-
+/*
 pub async fn list_dir(Path((name, age)): Path<(String, u8)>) -> DirectoryListing {
     DirectoryListing { name, age }
 }
+
+ */
