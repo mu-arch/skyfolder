@@ -13,7 +13,11 @@ JollyFolder enables you to quickly and easily spin up a self-contained HTTP serv
 - Multiple download methods: HTTP GET, HTTP JS managed File System Access API based download, built in bittorrent tracker that supports downloading via torrent magnet.
 
 ### Features:
-
+- Downloads
+- Uploads
+- List directories
+- Password and ACL policy on folders
+- Bittorrent tracker (incomplete, in research)
 
 ### Help needed:
 - Mobile version
