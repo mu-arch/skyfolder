@@ -1,13 +1,13 @@
 use clap::{arg, command, value_parser, ArgAction, Command};
 use std::env;
 use std::path::PathBuf;
-use crate::lib::errors::AppError;
+use crate::lib::errors::AppErrorInternal;
 
 pub struct Args {
     pub path: PathBuf,
 }
 
-pub fn parse_args() -> Result<Args, AppError> {
+pub fn parse_args() -> Result<Args, AppErrorInternal> {
 
     let matches = command!()
         .arg(
@@ -25,7 +25,7 @@ pub fn parse_args() -> Result<Args, AppError> {
         None => env::current_dir().expect("Couldn't determine the current directory. The program will exit."),
         Some(v) => v.clone()
     };
-    
+
     let args = Args {
         path
     };

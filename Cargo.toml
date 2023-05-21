@@ -15,3 +15,6 @@ hyper = "0.14.26"
 
 
 clap = { version = "4.3.0", features = ["cargo"]}
+
+
+axum-debug = "0.3.3"
