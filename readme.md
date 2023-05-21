@@ -1,8 +1,8 @@
 # JollyFolder
 
-**A Barebones program to quickly share a folder over the network.**
+**A Barebones program to quickly share folders on the network.**
 
-JollyFolder enables you to quickly and easily spin up a self-contained HTTP server to share files. Designed for busy people that don't want to remember how to configure anything. Ships with good defaults and includes a built-in management GUI to quickly check the boxes on exactly what features you want.
+JollyFolder enables you to quickly and easily spin up a self-contained HTTP server to share files. Designed for busy people that don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management GUI to quickly check the boxes on exactly what features you want.
 
 ### Project goals:
 - Security, should be safe to expose to the open internet
