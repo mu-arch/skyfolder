@@ -1,14 +1,7 @@
 #[derive(Debug)]
 pub enum AppErrorInternal {
-    IoError(std::io::Error),
     AddrParseError(std::net::AddrParseError),
     HyperError(hyper::Error),
-}
-
-impl From<std::io::Error> for AppErrorInternal {
-    fn from(inner: std::io::Error) -> Self {
-        AppErrorInternal::IoError(inner)
-    }
 }
 
 impl From<std::net::AddrParseError> for AppErrorInternal {
@@ -30,14 +23,15 @@ use hyper::Body;
 
 #[derive(Debug)]
 pub enum AppErrorExternal {
-    TestError
+     IoError(std::io::Error),
+    AskamaError(askama::Error)
 }
 
 impl IntoResponse for AppErrorExternal {
     fn into_response(self) -> Response {
 
         let (status, error_message) = match self {
-            AppErrorExternal::TestError => (StatusCode::INTERNAL_SERVER_ERROR, "something went wrong"),
+            AppErrorExternal::IoError(_) => (StatusCode::INTERNAL_SERVER_ERROR, "Internal IO Error"),
             _ => (StatusCode::INTERNAL_SERVER_ERROR, "something went wrong")
         };
 
@@ -45,3 +39,14 @@ impl IntoResponse for AppErrorExternal {
     }
 }
 
+impl From<std::io::Error> for AppErrorExternal {
+    fn from(inner: std::io::Error) -> Self {
+        AppErrorExternal::IoError(inner)
+    }
+}
+
+impl From<askama::Error> for AppErrorExternal {
+    fn from(inner: askama::Error) -> Self {
+        AppErrorExternal::AskamaError(inner)
+    }
+}

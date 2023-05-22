@@ -1,7 +1,9 @@
+use std::path::{Path, PathBuf};
+use std::sync::Arc;
 use crate::lib::{fs_interaction, parse_cli_args, request_handler};
 use crate::lib::errors::AppErrorInternal;
 use axum::routing::get;
-use axum::Server;
+use axum::{Extension, Server};
 
 mod lib {
     pub(crate) mod errors;
@@ -19,17 +21,25 @@ async fn main() {
 
 }
 
+pub struct AppState {
+    pub(crate) root_path: PathBuf
+}
+
 async fn init() -> Result<(), AppErrorInternal> {
-    let args = parse_cli_args::parse_args()?;
 
-    println!("The current directory is {}", args.path.display());
+    let app_state = {
+        let args = parse_cli_args::parse_args()?;
+        Arc::new(AppState {
+            root_path: args.path
+        })
+    };
 
-    let result = fs_interaction::list_dir_contents(&args.path).await;
-    dbg!(result);
+    println!("Serving directory: {}", app_state.root_path.display());
 
     let app = axum::Router::new()
-        //.route("/", get(request_handler::handle_path))
-        .route("/*path", get(request_handler::handle_path));
+        .route("/", get(request_handler::handle_root_path))
+        .route("/*path", get(request_handler::handle_path))
+        .layer(Extension(app_state));
 
     Server::bind(&"0.0.0.0:8080".parse()?)
         .serve(app.into_make_service())

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>user_hostname</title>
+</head>
+
+<body>
+{% for entry in entries %}
+<tr>
+    <td>{{ entry.name }}</td>
+    <td>{{ entry.size.unwrap_or_default() }}</td>
+</tr>
+{% endfor %}
+</body>
+</html>

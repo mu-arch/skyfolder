@@ -1,6 +1,6 @@
 use std::path::Path;
 use tokio::fs;
-use crate::lib::errors::AppErrorInternal;
+use crate::lib::errors::{AppErrorExternal};
 
 #[derive(Debug)]
 pub struct DirEntry {
@@ -10,7 +10,7 @@ pub struct DirEntry {
     pub(crate) is_symlink: bool,
 }
 
-pub async fn list_dir_contents(dir: &Path) -> Result<Vec<DirEntry>, AppErrorInternal> {
+pub async fn list_dir_contents(dir: &Path) -> Result<Vec<DirEntry>, AppErrorExternal> {
     let mut entries = Vec::new();
 
     if dir.is_dir() {
