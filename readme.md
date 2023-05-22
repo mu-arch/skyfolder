@@ -1,9 +1,9 @@
-# <img align="right" src="static/img/jolly_logo_long.png" alt="JollyFolder Logo" title="JollyFolder" width="200px" height="200px"> JollyFolder
+# <img align="right" src="static/img/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="220px" height="220px"> SkyFolder
 
 
 **A Barebones program to quickly share folders on the network.**
 
-JollyFolder enables you to quickly and easily spin up a self-contained HTTP server to share files. Designed for busy people that don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management GUI to quickly check the boxes on exactly what features you want.
+SkyFolder enables you to quickly and easily spin up a self-contained HTTP server to share files. Designed for busy people that don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management GUI to quickly check the boxes on exactly what features you want.
 
 ### Project goals:
 - Run on GNU/Linux, BSD, Windows, Mac
