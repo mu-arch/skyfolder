@@ -1,4 +1,4 @@
-# <img align="right" src="static/jolly_logo_long.png" alt="JollyFolder Logo" title="JollyFolder" width="200px" height="200px"> JollyFolder
+# <img align="right" src="static/img/jolly_logo_long.png" alt="JollyFolder Logo" title="JollyFolder" width="200px" height="200px"> JollyFolder
 
 
 **A Barebones program to quickly share folders on the network.**

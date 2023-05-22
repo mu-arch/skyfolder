@@ -77,3 +77,20 @@ pub async fn build_template(entries: &Vec<DirEntry>) -> Result<String, AppErrorE
 
     Ok(template.render()?)
 }
+
+impl DirEntry {
+    pub fn formatted_last_modified(&self) -> String {
+        match &self.last_modified {
+            Some(date) => date.format("%Y-%m-%d %H:%M:%S").to_string(),
+            None => "-".to_string(),
+        }
+    }
+    pub fn formatted_size(&self) -> String {
+        match self.size {
+            Some(size) => size.to_string(),
+            None => "-".to_string(),
+        }
+    }
+}
+
+//Indicates the last time this directory was directly modified, such as when files or subdirectories were added, removed, or renamed within it. Changes to files or modifications within subdirectories do not affect this timestamp.

@@ -6,11 +6,27 @@
 </head>
 
 <body>
+
+<table>
+    <thead>
+    <tr>
+        <th>Filename</th>
+        <th>Last Modified</th>
+        <th>File Size</th>
+    </tr>
+    </thead>
+    <tbody>
+
 {% for entry in entries %}
 <tr>
     <td>{{ entry.name }}</td>
-    <td>{{ entry.size.unwrap_or_default() }}</td>
+    <td>{{ entry.formatted_last_modified() }}</td>
+    <td>{{ entry.formatted_size() }}</td>
 </tr>
 {% endfor %}
+
+    </tbody>
+</table>
+
 </body>
 </html>

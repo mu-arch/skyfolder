@@ -1,0 +1,21 @@
+table {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead, tbody {
+    display: contents;
+}
+
+tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
