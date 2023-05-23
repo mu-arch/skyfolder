@@ -19,3 +19,12 @@ clap = { version = "4.3.0", features = ["cargo"]}
 get_if_addrs = "0.5.3"
 chrono = "0.4"
 bytes = "1.4.0"
+
+[profile.release]
+#debug = 1
+#debuginfo-level = 1
+lto = true
+codegen-units = 1
+panic = "abort"
+debug-assertions=false
+opt-level=3

@@ -106,10 +106,6 @@ th {
     color: #000;
 }
 
-.size {
-    letter-spacing: 1px;
-}
-
 .size span {
     padding: 2px 4px;
     background-color: #eaedee;
@@ -119,4 +115,21 @@ th {
     border-radius: 2px;
     position: relative;
     top: -1px;
+}
+
+table#table td.name {
+    /* Center-align the text vertically */
+    display: flex;
+    align-items: center;
+    padding-left: 34px; /* Adjust as needed, should be a little more than the width of your icon */
+}
+
+table#table td.name::before {
+    /* Show the icon before the cell content */
+    content: "";
+    display: inline-block;
+    width: 32px; /* Width of the icon */
+    height: 32px; /* Height of the icon */
+    margin-right: 8px;
+    background: url('/spritesheet.webp') -128px 0px; /* x and y coordinates of the sprite */
 }
