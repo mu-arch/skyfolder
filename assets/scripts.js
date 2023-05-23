@@ -21,23 +21,50 @@ function formatFileSize(bytes) {
     }
 }
 
+function formatDate(dateString) {
+    // Parse the date
+    let date = new Date(dateString);
+
+    // Calculate the difference between the current time and the given time
+    let diffInSeconds = Math.floor((new Date() - date) / 1000);
+
+    // Check if it is less than a minute
+    if (diffInSeconds < 60) {
+        return "just now";
+    }
+
+    // Check if it is less than an hour
+    if (diffInSeconds < 3600) {
+        return Math.floor(diffInSeconds / 60) + " minutes ago";
+    }
+
+    // Check if it is less than a day
+    if (diffInSeconds < 86400) {
+        return Math.floor(diffInSeconds / 3600) + " hours ago";
+    }
+
+    // Otherwise, show it in days
+    return Math.floor(diffInSeconds / 86400) + " days ago";
+}
+
 
 function formatTableRows() {
-    // Find all table cells with the class "size"
-    let cells = document.querySelectorAll('td.size');
-
-    for (let cell of cells) {
-        // Get the original value
+    let sizeCells = document.querySelectorAll('td.size');
+    for (let cell of sizeCells) {
         let originalValue = parseInt(cell.textContent);
-
-        // Store the original value in an aria-label attribute
         cell.setAttribute('aria-label', originalValue);
-
-        // Format the value
         let formattedValue = formatFileSize(originalValue);
-
-        // Replace the cell content with the formatted value
         cell.innerHTML = formattedValue;
+    }
+
+    // Find all table cells with the class "modified"
+    let dateCells = document.querySelectorAll('td.modified');
+    for (let cell of dateCells) {
+        let originalDate = cell.textContent;
+        cell.setAttribute('aria-label', originalDate);
+        let localDate = new Date(originalDate).toLocaleString();
+        let formattedDate = formatDate(localDate);
+        cell.innerHTML = formattedDate;
     }
 }
 
@@ -45,6 +72,4 @@ function first_run_manifest() {
     formatTableRows()
 }
 
-window.onload = function() {
-    first_run_manifest()
-}
+document.addEventListener('DOMContentLoaded', first_run_manifest);

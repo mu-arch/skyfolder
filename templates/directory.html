@@ -28,7 +28,7 @@
 
         {% for entry in entries %}
         <tr>
-            <td>{{ entry.name }}</td>
+            <td class="name">{{ entry.name }}</td>
             <td class="modified">{{ entry.formatted_last_modified() }}</td>
             <td class="size">{{ entry.formatted_size() | safe }}</td>
         </tr>
