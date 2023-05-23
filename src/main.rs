@@ -17,16 +17,7 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 #[tokio::main]
 async fn main() {
 
-    //cool rainbow effect on launch text
-    let colors = [31, 33, 32, 36, 34, 35, 37]; // ANSI color codes
-    let mut out = String::new();
-
-    for (i, letter) in "JollyFolder".chars().enumerate() {
-        let color = colors[i % colors.len()];
-        out.push_str(&format!("\x1b[{}m{}\x1b[0m", color, letter));
-    }
-
-    println!("Starting up {out} {VERSION}");
+    println!("Starting up \x1B[95mSkyFolder\x1B[0m {VERSION}");
 
     //start the actual application
     if let Err(e) = init().await {
@@ -37,7 +28,8 @@ async fn main() {
 
 pub struct AppState {
     pub(crate) root_path: PathBuf,
-    pub(crate) port: u16
+    pub(crate) port: u16,
+    pub(crate) title_name: Option<String> // the name the user gives to their server i.e. what is shown in page title tag
 }
 
 async fn init() -> Result<(), AppErrorInternal> {
@@ -46,7 +38,8 @@ async fn init() -> Result<(), AppErrorInternal> {
         let args = parse_cli_args::parse_args()?;
         Arc::new(AppState {
             root_path: args.path,
-            port: 30080
+            port: 30080,
+            title_name: None
         })
     };
 

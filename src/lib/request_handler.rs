@@ -8,6 +8,7 @@ use tokio::fs::File;
 use axum::debug_handler;
 use crate::AppState;
 use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
+use std::ffi::OsStr;
 
 pub enum ResponseWrapper {
     File(String),
@@ -31,7 +32,7 @@ impl IntoResponse for ResponseWrapper {
 //this is a special case for the root path "/" to simplify axum code
 pub async fn handle_root_path(app_state: Extension<Arc<AppState>>) -> Result<ResponseWrapper, AppErrorExternal> {
 
-    Ok(ResponseWrapper::Html(Html::from(build_dir_page(&app_state.root_path).await?)))
+    Ok(ResponseWrapper::Html(Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, std::path::Path::new("")).await?)))
 }
 
 pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppState>>) -> Result<ResponseWrapper, AppErrorExternal> {
@@ -45,7 +46,7 @@ pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppS
     };
 
     //create a Path type
-    let path = std::path::Path::new(&path);
+    let relative_path = std::path::Path::new(&path);
 
     if let Some(_) = last_segment.rfind('.') {
             Ok(ResponseWrapper::Html(
@@ -53,27 +54,37 @@ pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppS
             ))
     } else {
         Ok(ResponseWrapper::Html(
-            Html::from(build_dir_page(path).await?)
+            Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, relative_path).await?)
         ))
     }
 }
 
-pub async fn build_dir_page(path: &std::path::Path) -> Result<String, AppErrorExternal> {
+pub async fn build_dir_page(title_name: &Option<String>, root_path: &std::path::Path, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
-    let entries = list_dir_contents(path).await?;
+    let path = root_path.join(relative_path);
 
-    build_template(&entries).await
+    let entries = list_dir_contents(&path).await?;
+
+    build_template(title_name, &entries, relative_path).await
 }
 
 
 #[derive(Template)]
 #[template(path = "directory.html")]
 pub struct DirectoryTemplate<'a> {
+    title_name: String,
     entries: &'a Vec<DirEntry>,
 }
-pub async fn build_template(entries: &Vec<DirEntry>) -> Result<String, AppErrorExternal> {
+pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
-    let template = DirectoryTemplate { entries };
+    let title_name = title_name.as_deref().unwrap_or_else(|| "SkyFolder");
+    let folder_name = relative_path.file_name().unwrap_or(OsStr::new("Home")).to_string_lossy();
+    let title_name = format!("{folder_name} - {title_name}");
+
+    let template = DirectoryTemplate {
+        title_name,
+        entries
+    };
 
     Ok(template.render()?)
 }

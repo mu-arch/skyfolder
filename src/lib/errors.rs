@@ -29,6 +29,7 @@ pub enum AppErrorExternal {
 
 impl IntoResponse for AppErrorExternal {
     fn into_response(self) -> Response {
+        dbg!(&self);
 
         let (status, error_message) = match self {
             AppErrorExternal::IoError(_) => (StatusCode::INTERNAL_SERVER_ERROR, "Internal IO Error"),

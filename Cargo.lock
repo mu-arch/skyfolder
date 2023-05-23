@@ -523,20 +523,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "453ad9f582a441959e5f0d088b02ce04cfe8d51a8eaf077f12ac6d3e94164ca6"
 
 [[package]]
-name = "jollyfolder"
-version = "0.1.0"
-dependencies = [
- "askama",
- "askama_axum",
- "axum",
- "chrono",
- "clap",
- "get_if_addrs",
- "hyper",
- "tokio",
-]
-
-[[package]]
 name = "js-sys"
 version = "0.3.63"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -852,6 +838,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d8229b473baa5980ac72ef434c4415e70c4b5e71b423043adb4ba059f89c99a1"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "skyfolder"
+version = "0.1.0"
+dependencies = [
+ "askama",
+ "askama_axum",
+ "axum",
+ "chrono",
+ "clap",
+ "get_if_addrs",
+ "hyper",
+ "tokio",
 ]
 
 [[package]]
