@@ -1,4 +1,4 @@
-# <img align="right" src="static/img/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
+# <img align="right" src="non_embeded_static/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
 
 
 **A Barebones program to quickly share folders on the network.**
