@@ -9,7 +9,7 @@ use axum::debug_handler;
 use crate::AppState;
 use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
 use std::ffi::OsStr;
-use include_dir::include_dir;
+use bytes::Bytes;
 
 pub enum ResponseWrapper {
     File(String),
@@ -104,6 +104,29 @@ impl DirEntry {
         }
     }
 }
-const STATIC_DIR: include_dir::Dir = include_dir!("../static");
+
+
+// emdedding this data in the binary allows it to work without external files
+static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.png"));
+static STYLES: Bytes = Bytes::from_static(include_bytes!("../../assets/styles.css"));
+
+//serving these files with Axum rather than dynamically templated in with Askama results in better performance and memory usage
+#[debug_handler]
+pub async fn serve_spritesheet() -> Result<Response<Bytes>, AppErrorExternal> {
+    Ok(
+        Response::builder()
+            .header(hyper::header::CONTENT_TYPE, "image/png")
+            .body(SPRITESHEET.clone())?
+    )
+}
+
+#[debug_handler]
+pub async fn serve_css() -> Result<Response<Bytes>, AppErrorExternal> {
+    Ok(
+        Response::builder()
+            .header(hyper::header::CONTENT_TYPE, "text/css")
+            .body(STYLES.clone())?
+    )
+}
 
 //Indicates the last time this directory was directly modified, such as when files or subdirectories were added, removed, or renamed within it. Changes to files or modifications within subdirectories do not affect this timestamp.

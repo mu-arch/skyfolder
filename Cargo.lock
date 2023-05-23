@@ -847,6 +847,7 @@ dependencies = [
  "askama",
  "askama_axum",
  "axum",
+ "bytes",
  "chrono",
  "clap",
  "get_if_addrs",

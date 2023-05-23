@@ -63,7 +63,9 @@ async fn init() -> Result<(), AppErrorInternal> {
     let app = axum::Router::new()
         .route("/", get(request_handler::handle_root_path))
         .route("/*path", get(request_handler::handle_path))
-        .layer(Extension(app_state));
+        .layer(Extension(app_state))
+        .route("/spritesheet.png", get(request_handler::serve_spritesheet))
+        .route("/styles.css", get(request_handler::serve_css));
 
     Server::bind(&"0.0.0.0:8080".parse()?)
         .serve(app.into_make_service())
