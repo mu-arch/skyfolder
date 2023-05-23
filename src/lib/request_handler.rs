@@ -75,6 +75,7 @@ pub async fn build_dir_page(title_name: &Option<String>, root_path: &std::path::
 #[template(path = "directory.html")]
 pub struct DirectoryTemplate<'a> {
     title_name: String,
+    relative_path: &'a str,
     entries: &'a Vec<DirEntry>,
 }
 pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
@@ -83,8 +84,11 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
     let folder_name = relative_path.file_name().unwrap_or(OsStr::new("Home")).to_string_lossy();
     let title_name = format!("{folder_name} - {title_name}");
 
+    let relative_path = relative_path.to_str().unwrap_or_else(|| "");
+
     let template = DirectoryTemplate {
         title_name,
+        relative_path,
         entries
     };
 
@@ -108,27 +112,37 @@ impl DirEntry {
 
 
 // emdedding this data in the binary allows it to work without external files
-static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.png"));
+static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.webp"));
 static STYLES: Bytes = Bytes::from_static(include_bytes!("../../assets/styles.css"));
+static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));
 
 //serving these files with Axum rather than dynamically templated in with Askama results in better performance and memory usage
-#[debug_handler]
 pub async fn serve_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> {
     Ok(
         Response::builder()
             .status(StatusCode::OK)
-            .header(hyper::header::CONTENT_TYPE, "image/png")
+            .header(hyper::header::CONTENT_TYPE, "image/webp")
             .body(Body::from(&*SPRITESHEET))?
     )
 }
 
-#[debug_handler]
+
 pub async fn serve_css() -> Result<impl IntoResponse, AppErrorExternal> {
     Ok(
         Response::builder()
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "text/css")
             .body(Body::from(&*STYLES))?
+    )
+}
+
+
+pub async fn serve_js() -> Result<impl IntoResponse, AppErrorExternal> {
+    Ok(
+        Response::builder()
+            .status(StatusCode::OK)
+            .header(hyper::header::CONTENT_TYPE, "text/javascript")
+            .body(Body::from(&*SCRIPTS))?
     )
 }
 

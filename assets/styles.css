@@ -1,6 +1,77 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
 table {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html {
+    background-color: #F9FBFC;
+    font-family: Arial, sans-serif;
+}
+
+.icon {
+    width: 128px;
+    height: 128px;
+    background: url(/spritesheet.webp) no-repeat 0 0;
+    transform-origin: top left;
+    float:left;
+}
+
+.logo {
+    scale: .2;
+    margin: 6px 0 0 15px;
+}
+
+section {
+    padding: 40px;
+}
+
+header {
+    background-color: #eaedee;
+    border-radius: 10px;
+    height: 40px;
+    display: inline-block;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -12,10 +83,20 @@ thead, tbody {
 tr {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
 }
 
 th, td {
-    padding: 10px;
+    padding: 20px 10px;
     text-align: left;
+}
+
+th {
+
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #575757;
 }

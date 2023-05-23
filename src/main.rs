@@ -17,6 +17,7 @@ mod lib {
     pub(crate) mod fs_interaction;
     pub(crate) mod parse_cli_args;
     pub(crate) mod request_handler;
+    pub(crate) mod helper;
 }
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -24,7 +25,10 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 #[tokio::main]
 async fn main() {
 
-    println!("Starting up \x1B[95mSkyFolder\x1B[0m {VERSION}");
+    println!("Starting up \x1B[95mSkyFolder\x1B[0m {VERSION}\n");
+    println!("✅ If you need a feature or find a bug let me know in the Github issues tab.");
+    println!("⭐ If you like the program please star it on Github as it helps me.");
+    println!("💰 If you get value from the program please consider sponsoring me on Github. Ty!\n");
 
     //start the actual application
     if let Err(e) = init().await {
@@ -59,10 +63,10 @@ async fn init() -> Result<(), AppErrorInternal> {
     for iface in ifaces {
         match iface.addr {
             get_if_addrs::IfAddr::V4(addr) => {
-                println!("    http://{}:{}", addr.ip, app_state.port);
+                println!("    http://{}:{}", addr.ip, &app_state.port);
             }
             get_if_addrs::IfAddr::V6(addr) => {
-                println!("    http://[{}]:{}", addr.ip, app_state.port);
+                println!("    http://[{}]:{}", addr.ip, &app_state.port);
             }
         }
     }
@@ -70,11 +74,12 @@ async fn init() -> Result<(), AppErrorInternal> {
     let app = axum::Router::new()
         .route("/", get(request_handler::handle_root_path))
         .route("/*path", get(request_handler::handle_path))
-        .layer(Extension(app_state))
-        .route("/spritesheet.png", get(request_handler::serve_spritesheet))
-        .route("/styles.css", get(request_handler::serve_css));
+        .layer(Extension(app_state.clone()))
+        .route("/spritesheet.webp", get(request_handler::serve_spritesheet))
+        .route("/styles.css", get(request_handler::serve_css))
+        .route("/scripts.js", get(request_handler::serve_js));
 
-    Server::bind(&"0.0.0.0:8080".parse()?)
+    Server::bind(&format!("0.0.0.0:{}", app_state.port).parse()?)
         .serve(app.into_make_service())
         .await?;
 

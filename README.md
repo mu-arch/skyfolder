@@ -1,14 +1,18 @@
 # <img align="right" src="hosted/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
 
 
-**Easily share your files & folders online with minimal configuration BS. It's like your own personal Google Drive!**
+### Easily share your files & folders online with minimal configuration BS. It's like your own personal Google Drive!
 
 SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management graphical interface.
 
+### Screenshot:
+
+
 ### Features:
 - Downloads & uploads
-- Low resource usage (~8mb ram when idle, suitable for running 24/7 in background)
+- Create, Delete, Rename directories
 - Password and ACL policy on folders
+- Low resource footprint (~8mb DRAM when idle, suitable for running 24/7 in background)
 - Run on GNU/Linux, BSD, Windows, Mac
 - Bittorrent tracker (incomplete, in research)
 - Run for years without restart if needed
@@ -19,6 +23,7 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 
 ### Help needed:
 - Mobile version
+- Dark mode
 - Testing
 - Implementing Bittorrent
 - Polish and improve UI, more clever thoughtfulness towards the UI is always desired
