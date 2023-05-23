@@ -4,6 +4,7 @@ use crate::lib::errors::{AppErrorExternal};
 use askama::Template;
 use axum::response::{Html, IntoResponse, Response};
 use hyper::Body;
+use hyper::{StatusCode};
 use tokio::fs::File;
 use axum::debug_handler;
 use crate::AppState;
@@ -112,20 +113,22 @@ static STYLES: Bytes = Bytes::from_static(include_bytes!("../../assets/styles.cs
 
 //serving these files with Axum rather than dynamically templated in with Askama results in better performance and memory usage
 #[debug_handler]
-pub async fn serve_spritesheet() -> Result<Response<Bytes>, AppErrorExternal> {
+pub async fn serve_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> {
     Ok(
         Response::builder()
+            .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "image/png")
-            .body(SPRITESHEET.clone())?
+            .body(Body::from(&*SPRITESHEET))?
     )
 }
 
 #[debug_handler]
-pub async fn serve_css() -> Result<Response<Bytes>, AppErrorExternal> {
+pub async fn serve_css() -> Result<impl IntoResponse, AppErrorExternal> {
     Ok(
         Response::builder()
+            .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "text/css")
-            .body(STYLES.clone())?
+            .body(Body::from(&*STYLES))?
     )
 }
 
