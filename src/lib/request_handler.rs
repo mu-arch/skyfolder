@@ -9,6 +9,7 @@ use axum::debug_handler;
 use crate::AppState;
 use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
 use std::ffi::OsStr;
+use include_dir::include_dir;
 
 pub enum ResponseWrapper {
     File(String),
@@ -103,5 +104,6 @@ impl DirEntry {
         }
     }
 }
+const STATIC_DIR: include_dir::Dir = include_dir!("../static");
 
 //Indicates the last time this directory was directly modified, such as when files or subdirectories were added, removed, or renamed within it. Changes to files or modifications within subdirectories do not affect this timestamp.
