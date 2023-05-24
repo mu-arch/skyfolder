@@ -38,6 +38,22 @@ pub async fn handle_root_path(app_state: Extension<Arc<AppState>>) -> Result<Res
 }
 
 pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppState>>) -> Result<ResponseWrapper, AppErrorExternal> {
+
+    let relative_path = std::path::Path::new(&path);
+    if path.as_str().chars().last() == Some('/') {
+        Ok(ResponseWrapper::Html(
+            Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, &relative_path).await?)
+        ))
+    } else {
+        Ok(ResponseWrapper::Html(
+            axum::response::Html(format!("You requested file: {}", path))
+        ))
+    }
+}
+
+
+/*
+pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppState>>) -> Result<ResponseWrapper, AppErrorExternal> {
     // Split the path into segments
     let path_segments: Vec<_> = path.as_str().split('/').collect();
 
@@ -60,6 +76,8 @@ pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppS
         ))
     }
 }
+
+ */
 
 pub async fn build_dir_page(title_name: &Option<String>, root_path: &std::path::Path, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
@@ -107,6 +125,18 @@ impl DirEntry {
             Some(size) => size.to_string(),
             None => "-".to_string(),
         }
+    }
+    pub fn icon_picker(&self) -> String {
+        let position_text = if self.is_dir {
+            "-128px 0px".to_owned()
+        } else {
+            match &self.name.rfind('.').map(|i| &self.name[i + 1..]) {
+                Some("rs") => "0px -128px".to_owned(),
+                _ => "-256px 0px".to_owned()
+            }
+        };
+
+        format!("style=\"background-position:{position_text}\"")
     }
 }
 

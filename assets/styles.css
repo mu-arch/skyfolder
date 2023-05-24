@@ -68,8 +68,11 @@ section {
 }
 
 header {
-    background-color: #eaedee;
-    border-radius: 10px;
+    border: 1px solid #b8b8b8;
+    background: linear-gradient(#fff, #f2f1f0);
+    box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
+    border-radius: 5px;
+    padding-left: 20px;
     height: 40px;
     margin: 20px 0 40px 0;
     display: inline-block;
@@ -126,6 +129,7 @@ td.name {
     color: #000;
     cursor: pointer;
     overflow: hidden;
+    user-select: none;
 }
 
 
@@ -142,9 +146,10 @@ td.name::after {
     content: '';
     position: absolute;
     right: 0;
-    width: 10%;
+    width: 15%;
     height: 100%;
     background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+    pointer-events: none;
 }
 
 
@@ -155,7 +160,7 @@ td.name:hover a {
 
 td.name div {
     display: inline-block;
-    background: url('/spritesheet.webp') -128px 0px;
+    background: url('/spritesheet.webp');
     scale:.25;
     width: 128px;
     height: 128px;
@@ -169,6 +174,6 @@ td.name div {
     top: 0;
     right: 0;
     min-height: 100vh;
-    background-color: #eaedee;
+    background-color: #f2f1f0;
     width: 270px;
 }

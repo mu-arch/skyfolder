@@ -62,7 +62,9 @@ function preloadNextPage(element) {
     }
 }
 
-
+function navurl(url) {
+    window.location.href = url;
+}
 
 
 function first_run_manifest() {
