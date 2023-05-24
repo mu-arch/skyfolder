@@ -11,6 +11,7 @@ use crate::AppState;
 use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
 use std::ffi::OsStr;
 use bytes::Bytes;
+use crate::VERSION;
 
 pub enum ResponseWrapper {
     File(String),
@@ -83,6 +84,7 @@ pub struct DirectoryTemplate<'a> {
     title_name: String,
     relative_path: &'a str,
     entries: &'a Vec<DirEntry>,
+    version: &'a str
 }
 pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
@@ -95,7 +97,8 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
     let template = DirectoryTemplate {
         title_name,
         relative_path,
-        entries
+        entries,
+        version: VERSION
     };
 
     Ok(template.render()?)
@@ -127,10 +130,6 @@ impl DirEntry {
         format!("style=\"background-position:{position_text}\"")
     }
 }
-
-/*
-Use ServeFile. If you want to have a handler that does something to determine the file path (please make sure to guard against path traversal attacks¹) or do some work before returning the file, create ServeFile within the handler and use oneshot² to hand the request over to it.
- */
 
 
 // emdedding this data in the binary allows it to work without external files

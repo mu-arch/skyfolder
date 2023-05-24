@@ -81,6 +81,7 @@ header {
 table {
     width: 100%;
     table-layout: fixed;
+    min-height: calc(100vh - 300px);
 }
 
 thead, tbody {
@@ -169,6 +170,11 @@ td.name div {
     top: 13px;
 }
 
+table tr:last-child {
+    padding-bottom: 0;
+}
+
+
 #pane {
     position: fixed;
     top: 0;
@@ -176,4 +182,16 @@ td.name div {
     min-height: 100vh;
     background-color: #f2f1f0;
     width: 270px;
+}
+
+footer {
+    padding: 50px 0;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

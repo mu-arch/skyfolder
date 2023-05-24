@@ -13,9 +13,10 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 - Create, Delete, Rename directories
 - Sort the list by multiple parameters
 - Password and ACL policy on folders
-- TLS cert support with built in automatic Let's Encrypt client!
+- TLS cert support with built-in automatic Let's Encrypt client!
 - No third party services. Runs completely on your PC or server
 - Multiple views: list view, icon view, gallery view
+- In-browser file-viewer and streaming with real-time transcoding
 - Low resource footprint (~10mb DRAM when idle, suitable for running 24/7 in background)
 - Run on GNU/Linux, BSD, Windows, Mac
 - Bittorrent tracker (incomplete, in research)
@@ -28,7 +29,9 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 ### Help needed:
 - Mobile version
 - Dark mode
-- Testing
+- General testing
+- Penetration Testing
+- Automated tests
 - Implementing Bittorrent
 - Polish and improve UI, more clever thoughtfulness towards the UI is always desired
 - Your feedback (there's no such thing as a stupid/trite question/comment here)

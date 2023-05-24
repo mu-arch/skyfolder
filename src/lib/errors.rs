@@ -35,6 +35,8 @@ impl IntoResponse for AppErrorExternal {
         dbg!(&self);
 
         let (status, error_message) = match self {
+            AppErrorExternal::IoError(ref e) if e.kind() == std::io::ErrorKind::NotFound =>
+                (StatusCode::NOT_FOUND, "File not found"),
             AppErrorExternal::IoError(_) => (StatusCode::INTERNAL_SERVER_ERROR, "Internal IO Error"),
             AppErrorExternal::FileNotFound => (StatusCode::NOT_FOUND, "File not found"),
             AppErrorExternal::PathTraversal => (StatusCode::FORBIDDEN, "nice try"),
