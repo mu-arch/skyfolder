@@ -25,7 +25,8 @@ use hyper::Body;
 pub enum AppErrorExternal {
     IoError(std::io::Error),
     AskamaError(askama::Error),
-    AxumError(axum::http::Error)
+    AxumError(axum::http::Error),
+    FileNotFound
 }
 
 impl IntoResponse for AppErrorExternal {
@@ -34,6 +35,7 @@ impl IntoResponse for AppErrorExternal {
 
         let (status, error_message) = match self {
             AppErrorExternal::IoError(_) => (StatusCode::INTERNAL_SERVER_ERROR, "Internal IO Error"),
+            AppErrorExternal::FileNotFound => (StatusCode::NOT_FOUND, "File not found"),
             _ => (StatusCode::INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR")
         };
 
@@ -58,3 +60,4 @@ impl From<axum::http::Error> for AppErrorExternal {
         AppErrorExternal::AxumError(inner)
     }
 }
+

@@ -76,6 +76,7 @@ async fn init() -> Result<(), AppErrorInternal> {
         .route("/*path", get(request_handler::handle_path))
         .layer(Extension(app_state.clone()))
         .route("/spritesheet.webp", get(request_handler::serve_spritesheet))
+        .route("/favicon.ico", get(request_handler::serve_favicon))
         .route("/styles.css", get(request_handler::serve_css))
         .route("/scripts.js", get(request_handler::serve_js));
 

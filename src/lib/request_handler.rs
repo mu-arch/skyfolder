@@ -115,6 +115,7 @@ impl DirEntry {
 static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.webp"));
 static STYLES: Bytes = Bytes::from_static(include_bytes!("../../assets/styles.css"));
 static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));
+static FAVICON: Bytes = Bytes::from_static(include_bytes!("../../assets/favicon.ico"));
 
 //serving these files with Axum rather than dynamically templated in with Askama results in better performance and memory usage
 pub async fn serve_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> {
@@ -123,6 +124,15 @@ pub async fn serve_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> 
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "image/webp")
             .body(Body::from(&*SPRITESHEET))?
+    )
+}
+
+pub async fn serve_favicon() -> Result<impl IntoResponse, AppErrorExternal> {
+    Ok(
+        Response::builder()
+            .status(StatusCode::OK)
+            .header(hyper::header::CONTENT_TYPE, "image/x-icon")
+            .body(Body::from(&*FAVICON))?
     )
 }
 
