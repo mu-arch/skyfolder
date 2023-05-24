@@ -29,7 +29,7 @@
 
         {% for entry in entries %}
         <tr>
-            <td class="name"><div></div><span>{{ entry.name }}</span></td>
+            <td class="name" onmouseover="preloadNextPage(this)"><div></div><a href="{{ relative_path }}/{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td>
             <td class="modified">{{ entry.formatted_last_modified() }}</td>
             <td class="size">{{ entry.formatted_size() | safe }}</td>
         </tr>
