@@ -77,16 +77,17 @@ header {
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    table-layout: fixed;
 }
 
 thead, tbody {
     display: contents;
 }
 
+
 tr {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2.5fr 1.5fr 1fr;
     border-bottom: 1px solid #e5e5e5;
     font-size: 14px;
 }
@@ -124,19 +125,29 @@ td.name {
     position: relative;
     color: #000;
     cursor: pointer;
+    overflow: hidden;
 }
+
 
 td.name a {
-    padding: 5px 12px;
-    border-radius: 200px;
     font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
     margin-left: 50px;
+    max-width: calc(100% - 60px);
+    line-height: 1em;
 }
 
-tr:hover td.name a {
-    background-color: #f4f6f8;
-
+td.name::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
 }
+
+
 
 td.name:hover a {
     text-decoration: underline;
