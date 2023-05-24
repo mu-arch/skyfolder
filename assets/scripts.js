@@ -21,32 +21,23 @@ function formatFileSize(bytes) {
     }
 }
 
-function formatDate(dateString) {
-    // Parse the date
-    let date = new Date(dateString);
+function formatTimeAgo(unixTimestamp) {
+    const currentTime = Math.floor(Date.now() / 1000); // Convert current time to Unix timestamp
+    const timeDifference = currentTime - unixTimestamp; // Calculate the time difference in seconds
 
-    // Calculate the difference between the current time and the given time
-    let diffInSeconds = Math.floor((new Date() - date) / 1000);
-
-    // Check if it is less than a minute
-    if (diffInSeconds < 60) {
+    if (timeDifference < 60) {
         return "just now";
+    } else if (timeDifference < 3600) {
+        const minutes = Math.floor(timeDifference / 60);
+        return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
+    } else if (timeDifference < 86400) {
+        const hours = Math.floor(timeDifference / 3600);
+        return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
+    } else {
+        const days = Math.floor(timeDifference / 86400);
+        return days === 1 ? "1 day ago" : `${days} days ago`;
     }
-
-    // Check if it is less than an hour
-    if (diffInSeconds < 3600) {
-        return Math.floor(diffInSeconds / 60) + " minutes ago";
-    }
-
-    // Check if it is less than a day
-    if (diffInSeconds < 86400) {
-        return Math.floor(diffInSeconds / 3600) + " hours ago";
-    }
-
-    // Otherwise, show it in days
-    return Math.floor(diffInSeconds / 86400) + " days ago";
 }
-
 
 function formatTableRows() {
     let sizeCells = document.querySelectorAll('td.size');
@@ -62,8 +53,7 @@ function formatTableRows() {
     for (let cell of dateCells) {
         let originalDate = cell.textContent;
         cell.setAttribute('aria-label', originalDate);
-        let localDate = new Date(originalDate).toLocaleString();
-        let formattedDate = formatDate(localDate);
+        let formattedDate = formatTimeAgo(originalDate);
         cell.innerHTML = formattedDate;
     }
 }

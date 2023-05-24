@@ -98,7 +98,7 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
 impl DirEntry {
     pub fn formatted_last_modified(&self) -> String {
         match &self.last_modified {
-            Some(date) => date.format("%Y-%m-%d %H:%M:%S").to_string(),
+            Some(date) => date.to_string(),
             None => "-".to_string(),
         }
     }

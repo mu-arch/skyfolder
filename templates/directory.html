@@ -10,6 +10,7 @@
     <meta property="og:title" content="{{ title_name }}"/>
     <meta property="og:description" content="A folder has been shared with you. Open now to browse."/>
     <meta property="og:image" content="https://raw.githubusercontent.com/mu-arch/skyfolder/master/hosted/og_image.jpg"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
 <body>
@@ -28,7 +29,7 @@
 
         {% for entry in entries %}
         <tr>
-            <td class="name">{{ entry.name }}</td>
+            <td class="name"><div></div><span>{{ entry.name }}</span></td>
             <td class="modified">{{ entry.formatted_last_modified() }}</td>
             <td class="size">{{ entry.formatted_size() | safe }}</td>
         </tr>
