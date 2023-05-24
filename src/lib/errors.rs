@@ -26,7 +26,8 @@ pub enum AppErrorExternal {
     IoError(std::io::Error),
     AskamaError(askama::Error),
     AxumError(axum::http::Error),
-    FileNotFound
+    FileNotFound,
+    PathTraversal
 }
 
 impl IntoResponse for AppErrorExternal {
@@ -36,6 +37,7 @@ impl IntoResponse for AppErrorExternal {
         let (status, error_message) = match self {
             AppErrorExternal::IoError(_) => (StatusCode::INTERNAL_SERVER_ERROR, "Internal IO Error"),
             AppErrorExternal::FileNotFound => (StatusCode::NOT_FOUND, "File not found"),
+            AppErrorExternal::PathTraversal => (StatusCode::FORBIDDEN, "nice try"),
             _ => (StatusCode::INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR")
         };
 

@@ -37,12 +37,28 @@ pub async fn handle_root_path(app_state: Extension<Arc<AppState>>) -> Result<Res
     Ok(ResponseWrapper::Html(Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, std::path::Path::new("")).await?)))
 }
 
+
 pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppState>>) -> Result<ResponseWrapper, AppErrorExternal> {
 
-    let relative_path = std::path::Path::new(&path);
+    let root_path = std::path::Path::new(&app_state.root_path);
+    let canonical_root_path = root_path.canonicalize()?;
+
+    // Construct the full path
+    let full_path = root_path.join(&path);
+
+    // Canonicalize the full path, resolving any ".." or "." segments
+    let canonical_full_path = full_path.canonicalize()?;
+
+    // If the canonical full path does not start with the canonical root path,
+    // then this is a path traversal attempt, and we should not serve the file.
+    if !canonical_full_path.starts_with(&canonical_root_path) {
+        return Err(AppErrorExternal::PathTraversal);
+    }
+
+    // Here, you can be sure that canonical_full_path is within root_path.
     if path.as_str().chars().last() == Some('/') {
         Ok(ResponseWrapper::Html(
-            Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, &relative_path).await?)
+            Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, &canonical_full_path).await?)
         ))
     } else {
         Ok(ResponseWrapper::Html(
@@ -50,34 +66,6 @@ pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppS
         ))
     }
 }
-
-
-/*
-pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppState>>) -> Result<ResponseWrapper, AppErrorExternal> {
-    // Split the path into segments
-    let path_segments: Vec<_> = path.as_str().split('/').collect();
-
-    // Check if the last segment is a file name (contains a dot)
-    let last_segment = match path_segments.last() {
-        None => "",
-        Some(v) => v
-    };
-
-    //create a Path type
-    let relative_path = std::path::Path::new(&path);
-
-    if let Some(_) = last_segment.rfind('.') {
-            Ok(ResponseWrapper::Html(
-                axum::response::Html(format!("You requested file: {}", last_segment))
-            ))
-    } else {
-        Ok(ResponseWrapper::Html(
-            Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, relative_path).await?)
-        ))
-    }
-}
-
- */
 
 pub async fn build_dir_page(title_name: &Option<String>, root_path: &std::path::Path, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
@@ -139,6 +127,10 @@ impl DirEntry {
         format!("style=\"background-position:{position_text}\"")
     }
 }
+
+/*
+Use ServeFile. If you want to have a handler that does something to determine the file path (please make sure to guard against path traversal attacks¹) or do some work before returning the file, create ServeFile within the handler and use oneshot² to hand the request over to it.
+ */
 
 
 // emdedding this data in the binary allows it to work without external files
