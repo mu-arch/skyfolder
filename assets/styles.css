@@ -43,7 +43,7 @@ table {
 }
 
 html {
-    background-color: #F9FBFC;
+    background-color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -66,6 +66,7 @@ header {
     background-color: #eaedee;
     border-radius: 10px;
     height: 40px;
+    margin: 20px 0 40px 0;
     display: inline-block;
 }
 
@@ -86,22 +87,22 @@ tr {
 }
 
 th, td {
-    padding: 25px 10px;
     text-align: left;
     color: #6c6c6c;
 }
 
 th {
-
+    padding: 15px 10px;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 10px;
     letter-spacing: 1px;
 }
 
-.name {
-    color: #000;
+td {
+    padding: 22px 10px;
 }
+
 
 .size span {
     padding: 2px 4px;
@@ -116,19 +117,40 @@ th {
 
 td.name {
     position: relative;
+    color: #000;
+    cursor: pointer;
+}
+
+td.name span {
+    padding: 5px 10px;
+    border-radius: 200px;
+}
+
+tr:hover td.name span {
+    background-color: #edf0f1;
+    font-weight: bold;
 }
 
 td.name div {
     display: inline-block;
     background: url('/spritesheet.webp') -128px 0px;
-    scale:.3;
+    scale:.25;
     width: 128px;
     height: 128px;
     transform-origin: top left;
     position: absolute;
-    top: 11px;
+    top: 13px;
 }
 
 td.name span {
     margin-left: 60px;
+}
+
+#pane {
+    position: fixed;
+    top: 0;
+    right: 0;
+    min-height: 100vh;
+    background-color: #eaedee;
+    width: 270px;
 }

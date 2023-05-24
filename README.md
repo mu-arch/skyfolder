@@ -13,7 +13,6 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 - Create, Delete, Rename directories
 - Password and ACL policy on folders
 - No third party services. Runs completely on your PC or server
-- Memory maps files served via HTTP to achieve PCI-bus level throughput (means downloads go *very* fast :D)
 - Low resource footprint (~10mb DRAM when idle, suitable for running 24/7 in background)
 - Run on GNU/Linux, BSD, Windows, Mac
 - Bittorrent tracker (incomplete, in research)

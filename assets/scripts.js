@@ -22,21 +22,13 @@ function formatFileSize(bytes) {
 }
 
 function formatTimeAgo(unixTimestamp) {
-    const currentTime = Math.floor(Date.now() / 1000); // Convert current time to Unix timestamp
-    const timeDifference = currentTime - unixTimestamp; // Calculate the time difference in seconds
+    const currentTime = Math.floor(Date.now() / 1000);
+    const timeDifference = currentTime - unixTimestamp;
 
-    if (timeDifference < 60) {
-        return "just now";
-    } else if (timeDifference < 3600) {
-        const minutes = Math.floor(timeDifference / 60);
-        return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
-    } else if (timeDifference < 86400) {
-        const hours = Math.floor(timeDifference / 3600);
-        return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
-    } else {
-        const days = Math.floor(timeDifference / 86400);
-        return days === 1 ? "1 day ago" : `${days} days ago`;
-    }
+    if (timeDifference < 60) return "just now";
+    if (timeDifference < 3600) return `${Math.floor(timeDifference / 60)} minutes ago`;
+    if (timeDifference < 86400) return `${Math.floor(timeDifference / 3600)} hours ago`;
+    return `${Math.floor(timeDifference / 86400)} days ago`;
 }
 
 function formatTableRows() {
