@@ -42,6 +42,7 @@ pub async fn handle_root_path(app_state: Extension<Arc<AppState>>) -> Result<Res
 pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppState>>) -> Result<ResponseWrapper, AppErrorExternal> {
 
     let root_path = std::path::Path::new(&app_state.root_path);
+    let relative_path = std::path::Path::new(&path);
     let canonical_root_path = root_path.canonicalize()?;
 
     // Construct the full path
@@ -59,7 +60,7 @@ pub async fn handle_path(Path(path): Path<String>, app_state: Extension<Arc<AppS
     // Here, you can be sure that canonical_full_path is within root_path.
     if path.as_str().chars().last() == Some('/') {
         Ok(ResponseWrapper::Html(
-            Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, &canonical_full_path).await?)
+            Html::from(build_dir_page(&app_state.title_name, &app_state.root_path, &relative_path).await?)
         ))
     } else {
         Ok(ResponseWrapper::Html(
@@ -81,21 +82,21 @@ pub async fn build_dir_page(title_name: &Option<String>, root_path: &std::path::
 #[derive(Template)]
 #[template(path = "directory.html")]
 pub struct DirectoryTemplate<'a> {
-    title_name: String,
+    title: String,
     relative_path: &'a str,
     entries: &'a Vec<DirEntry>,
     version: &'a str
 }
 pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
-    let title_name = title_name.as_deref().unwrap_or_else(|| "SkyFolder");
+    let title = title_name.as_deref().unwrap_or_else(|| "SkyFolder");
     let folder_name = relative_path.file_name().unwrap_or(OsStr::new("Home")).to_string_lossy();
-    let title_name = format!("{folder_name} - {title_name}");
+    let title = format!("{folder_name} - {title}");
 
     let relative_path = relative_path.to_str().unwrap_or_else(|| "");
 
     let template = DirectoryTemplate {
-        title_name,
+        title,
         relative_path,
         entries,
         version: VERSION
@@ -123,6 +124,7 @@ impl DirEntry {
         } else {
             match &self.name.rfind('.').map(|i| &self.name[i + 1..]) {
                 Some("rs") => "0px -128px".to_owned(),
+                Some("iso") => "-384px 0px".to_owned(),
                 _ => "-256px 0px".to_owned()
             }
         };
@@ -131,8 +133,33 @@ impl DirEntry {
     }
 }
 
+trait FormatPath {
+    fn format_path(&self) -> String;
+}
 
-// emdedding this data in the binary allows it to work without external files
+impl FormatPath for &str {
+    fn format_path(&self) -> String {
+        let mut formatted_path = String::new();
+        let path_parts: Vec<&str> = self.split('/').collect();
+        let mut relative_path = String::from("/");
+        for part in path_parts {
+            if !part.is_empty() {
+                relative_path.push_str(part);
+                relative_path.push('/');
+                formatted_path.push_str(&format!(
+                    "<div onclick=\"navurl('{}')\"><span>{}/</span></div>",
+                    relative_path, part
+                ));
+            }
+        }
+        formatted_path
+    }
+}
+
+
+
+
+// embedding this data in the binary allows it to work without external files
 static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.webp"));
 static STYLES: Bytes = Bytes::from_static(include_bytes!("../../assets/styles.css"));
 static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));

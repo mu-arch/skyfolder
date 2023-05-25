@@ -52,9 +52,29 @@ html {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
+section {
+    padding: 40px;
+    width: calc(100% - 350px);
+}
+
+header {
+    margin: 5px 0 35px 0;
+    display: block;
+}
+
+header > div:first-of-type {
+    width: 51px;
+    padding: 0;
+}
+
+header > div:first-of-type > span {
+    align-self: flex-start;
+}
+
+
 .logo {
     scale: .2;
-    margin: 6px 0 0 15px;
+    margin: 7px 0 0 12px;
     width: 128px;
     height: 128px;
     background: url(/spritesheet.webp) no-repeat 0 0;
@@ -62,20 +82,25 @@ html {
     position: absolute;
 }
 
-section {
-    padding: 40px;
-    width: calc(100% - 350px);
-}
-
-header {
+header div {
+    vertical-align: top;
+    cursor: pointer;
     border: 1px solid #b8b8b8;
-    background: linear-gradient(#fff, #f2f1f0);
+    background: linear-gradient(#fff, #fff);
     box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
     border-radius: 5px;
-    padding-left: 20px;
+    padding: 0 15px;
+    display: inline-flex;
+    align-items: center;
     height: 40px;
-    margin: 20px 0 40px 0;
-    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+header div:hover {
+    background: linear-gradient(#fff, #efefef);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -171,7 +196,7 @@ td.name div {
 }
 
 table tr:last-child {
-    padding-bottom: 0;
+    border-bottom: 0;
 }
 
 
