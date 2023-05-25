@@ -6,7 +6,8 @@
 SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management graphical interface.
 
 ### Screenshot:
-(coming soon)
+
+![Screenshot](Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
 
 ### Features:
 - Downloads & uploads
