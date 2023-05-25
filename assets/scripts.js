@@ -56,6 +56,8 @@ function formatTableRows() {
         let formattedDate = formatTimeAgo(originalDate);
         cell.innerHTML = formattedDate;
     }
+
+    table_empty_display()
 }
 
 //onmouseover="preloadNextPage(this)"
@@ -72,6 +74,18 @@ function formatTableRows() {
     }
 }
 */
+
+function table_empty_display() {
+    const table = document.querySelector('#table');
+
+    if (table.querySelectorAll('tbody tr').length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.classList.add('folder-empty');
+        emptyDiv.innerHTML = '<div></div><span>This folder is empty.</span>';
+        table.parentNode.insertBefore(emptyDiv, table.nextSibling);
+    }
+}
+
 
 function navurl(url) {
     window.location.href = url;
