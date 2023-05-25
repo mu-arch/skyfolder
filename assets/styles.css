@@ -91,8 +91,8 @@ header > div:last-of-type {
 header div {
     vertical-align: top;
     cursor: pointer;
+    background:#fff;
     border: 1px solid #b8b8b8;
-    background: linear-gradient(#fff, #fff);
     box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
     border-radius: 5px;
     padding: 0 15px;
@@ -105,8 +105,23 @@ header div {
 }
 
 header div:hover {
-    background: linear-gradient(#fff, #efefef);
+    background: #efefef;
 }
+
+header > div:only-child {
+    border: 1px transparent;
+    box-shadow: none;
+    pointer-events: none;
+    width: auto;
+}
+
+header > div:only-child .logo{
+    scale: .4;
+    position: relative;
+    top: -15px;
+    left: -12px;
+}
+
 
 table {
     width: 100%;
@@ -121,7 +136,7 @@ thead, tbody {
 
 tr {
     display: grid;
-    grid-template-columns: 3.2fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr;
     border-bottom: 1px solid #e5e5e5;
     font-size: 14px;
 }
