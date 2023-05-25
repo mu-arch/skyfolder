@@ -26,10 +26,18 @@ function formatTimeAgo(unixTimestamp) {
     const timeDifference = currentTime - unixTimestamp;
 
     if (timeDifference < 60) return "just now";
-    if (timeDifference < 3600) return `${Math.floor(timeDifference / 60)} minutes ago`;
-    if (timeDifference < 86400) return `${Math.floor(timeDifference / 3600)} hours ago`;
-    return `${Math.floor(timeDifference / 86400)} days ago`;
+    if (timeDifference < 3600) {
+        const minutes = Math.floor(timeDifference / 60);
+        return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
+    }
+    if (timeDifference < 86400) {
+        const hours = Math.floor(timeDifference / 3600);
+        return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+    }
+    const days = Math.floor(timeDifference / 86400);
+    return `${days} ${days === 1 ? "day" : "days"} ago`;
 }
+
 
 function formatTableRows() {
     let sizeCells = document.querySelectorAll('td.size');
