@@ -1,6 +1,5 @@
 # <img align="right" src="hosted/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
 
-
 ### Easily share your files & folders online with minimal configuration BS. It's like your own personal Google Drive!
 
 SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management graphical interface.
@@ -23,6 +22,7 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 - TLS cert support with built-in automatic Let's Encrypt client!
 - Bittorrent tracker (incomplete, in research)
 - Run for years without restart if needed
+- No telemetry, the SkyFolder makes no outgoing connections, only serves clients connecting to it
 - Secure to expose to the open internet
 - Management GUI that generates Gura markup for you in the background (not required, you can edit the Gura yourself)
 - Multiple download methods: HTTP GET, HTTP JS managed File System Access API based download, built in bittorrent tracker that supports downloading via torrent magnet.
@@ -40,29 +40,6 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 - Test if it works on a 32bit computer
 
 ### How to install:
-
-#### GNU Linux (x86 & aarch64):
-
-##### Via Cargo (recommended)
-
-1. Install Rustlang on your computer (execute the command at https://www.rust-lang.org/learn/get-started)
-2. Execute this command: `cargo install skyfolder`
-3. Done. Use the command `skyfolder` to run the program
-
-##### Via release binary
-
-1. Download a binary, set its execution bit, execute it with `./skyfolder`
-2. Done. Consider adding it to your path.
-
-#### Apple Macintosh (x86 & aarch64): 
-
-##### Via Cargo (recommended)
-
-1. Install Rustlang on your computer (execute the command at https://www.rust-lang.org/learn/get-started)
-2. Execute this command: `cargo install skyfolder`
-3. Done. Use the command `skyfolder` to run the program
-
-#### Microsoft Windows:
 
 Coming soon.
 

@@ -58,7 +58,7 @@ function formatTableRows() {
     }
 }
 
-function preloadNextPage(element) {
+/*function preloadNextPage(element) {
     const anchorElement = element.querySelector('a');
     const linkHref = anchorElement.href;
 
@@ -69,6 +69,7 @@ function preloadNextPage(element) {
         }
     }
 }
+*/
 
 function navurl(url) {
     window.location.href = url;

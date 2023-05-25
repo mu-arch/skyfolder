@@ -59,7 +59,9 @@ section {
 
 header {
     margin: 5px 0 35px 0;
-    display: block;
+    display: inline-block;
+    background-color: #f1f1f1;
+    border-radius: 20px;
 }
 
 header > div:first-of-type {
@@ -69,6 +71,10 @@ header > div:first-of-type {
 
 header > div:first-of-type > span {
     align-self: flex-start;
+}
+
+header > div:last-of-type {
+    margin-right: 0px;
 }
 
 
@@ -100,7 +106,6 @@ header div {
 
 header div:hover {
     background: linear-gradient(#fff, #efefef);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -116,7 +121,7 @@ thead, tbody {
 
 tr {
     display: grid;
-    grid-template-columns: 2.5fr 1.5fr 1fr;
+    grid-template-columns: 3.2fr 1fr 1fr;
     border-bottom: 1px solid #e5e5e5;
     font-size: 14px;
 }
