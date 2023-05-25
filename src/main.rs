@@ -74,6 +74,7 @@ async fn init() -> Result<(), AppErrorInternal> {
     let app = axum::Router::new()
         .route("/", get(request_handler::handle_root_path))
         .route("/*path", get(request_handler::handle_path))
+        .route("/about_skyfolder", get(request_handler::build_about))
         .layer(Extension(app_state.clone()))
         .route("/spritesheet.webp", get(request_handler::serve_spritesheet))
         .route("/favicon.ico", get(request_handler::serve_favicon))

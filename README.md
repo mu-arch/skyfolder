@@ -21,6 +21,7 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 - Run on GNU/Linux, BSD, Windows, Mac
 - TLS cert support with built-in automatic Let's Encrypt client!
 - Bittorrent tracker (incomplete, in research)
+- OS toast notification when someone downloads a file from you
 - Run for years without restart if needed
 - No telemetry, the SkyFolder makes no outgoing connections, only serves clients connecting to it
 - Secure to expose to the open internet

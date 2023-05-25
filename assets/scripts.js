@@ -58,6 +58,8 @@ function formatTableRows() {
     }
 }
 
+//onmouseover="preloadNextPage(this)"
+
 /*function preloadNextPage(element) {
     const anchorElement = element.querySelector('a');
     const linkHref = anchorElement.href;

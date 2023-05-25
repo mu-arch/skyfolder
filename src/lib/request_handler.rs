@@ -204,4 +204,16 @@ pub async fn serve_js() -> Result<impl IntoResponse, AppErrorExternal> {
     )
 }
 
-//Indicates the last time this directory was directly modified, such as when files or subdirectories were added, removed, or renamed within it. Changes to files or modifications within subdirectories do not affect this timestamp.
+#[derive(Template)]
+#[template(path = "about.html")]
+pub struct AboutTemplate<'a> {
+    version: &'a str
+}
+pub async fn build_about() -> Result<Html<String>, AppErrorExternal> {
+
+    let template = AboutTemplate {
+        version: VERSION
+    };
+
+    Ok(Html::from(template.render()?))
+}

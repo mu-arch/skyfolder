@@ -28,13 +28,13 @@
         <tbody>
 
         {% for entry in entries %}
-        <tr><td class="name" onclick="navurl('{{ entry.name }}{% if entry.is_dir %}/{% endif %}')" onmouseover="preloadNextPage(this)"><div {{ entry.icon_picker() | safe }}></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td><td class="modified">{{ entry.formatted_last_modified() }}</td><td class="size">{{ entry.formatted_size() | safe }}</td></tr>
+        <tr><td class="name" onclick="navurl('{{ entry.name }}{% if entry.is_dir %}/{% endif %}')"><div {{ entry.icon_picker() | safe }}></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td><td class="modified">{{ entry.formatted_last_modified() }}</td><td class="size">{{ entry.formatted_size() | safe }}</td></tr>
         {% endfor %}
 
         </tbody>
     </table>
 
-    <footer><a href="https://github.com/mu-arch/skyfolder">SkyFolder {{ VERSION }}</a></footer>
+    <footer><a href="/about_skyfolder">SkyFolder Project</a></footer>
 
 </section>
 
