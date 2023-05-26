@@ -166,6 +166,7 @@ pub async fn serve_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> 
         Response::builder()
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "image/webp")
+            .header("Cache-Control", "public, max-age=7884000")
             .body(Body::from(&*SPRITESHEET))?
     )
 }
@@ -175,6 +176,7 @@ pub async fn serve_favicon() -> Result<impl IntoResponse, AppErrorExternal> {
         Response::builder()
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "image/x-icon")
+            .header("Cache-Control", "public, max-age=7884000")
             .body(Body::from(&*FAVICON))?
     )
 }
@@ -185,6 +187,7 @@ pub async fn serve_css() -> Result<impl IntoResponse, AppErrorExternal> {
         Response::builder()
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "text/css")
+            .header("Cache-Control", "public, max-age=7884000")
             .body(Body::from(&*STYLES))?
     )
 }
@@ -195,6 +198,7 @@ pub async fn serve_js() -> Result<impl IntoResponse, AppErrorExternal> {
         Response::builder()
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "text/javascript")
+            .header("Cache-Control", "public, max-age=7884000")
             .body(Body::from(&*SCRIPTS))?
     )
 }
