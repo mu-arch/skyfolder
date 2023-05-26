@@ -133,6 +133,7 @@ impl DirEntry {
                 Some("jpg") | Some("jpeg") => "-512px -128px".to_owned(),
                 Some("svg")  => "-384px -128px".to_owned(),
                 Some("png")  => "-640px -128px".to_owned(),
+                Some("gif")  => "-896px -128px".to_owned(),
                 Some("ds_store")  => "-768px -128px".to_owned(),
                 _ => "-256px 0px".to_owned()
             }
