@@ -41,3 +41,5 @@ pub async fn list_dir_contents(dir: &Path) -> Result<Vec<DirEntry>, AppErrorExte
 
     Ok(entries)
 }
+
+

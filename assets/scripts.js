@@ -58,6 +58,7 @@ function formatTableRows() {
     }
 
     table_empty_display()
+    set_table_name_row_onclick()
 }
 
 //onmouseover="preloadNextPage(this)"
@@ -74,6 +75,17 @@ function formatTableRows() {
     }
 }
 */
+
+function set_table_name_row_onclick() {
+    var table = document.getElementById('table');
+    var anchors = table.getElementsByTagName('a');
+    for (var i = 0; i < anchors.length; i++) {
+        var anchor = anchors[i];
+        var href = anchor.getAttribute('href');
+        anchor.parentNode.setAttribute('onclick', 'navurl(\'' + href + '\')');
+    }
+}
+
 
 function table_empty_display() {
     const table = document.querySelector('#table');

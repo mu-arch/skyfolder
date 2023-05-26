@@ -28,16 +28,18 @@
         <tbody>
 
         {% for entry in entries %}
-        <tr><td class="name" onclick="navurl('{{ entry.name }}{% if entry.is_dir %}/{% endif %}')"><div {{ entry.icon_picker() | safe }}></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td><td class="modified">{{ entry.formatted_last_modified() }}</td><td class="size">{{ entry.formatted_size() | safe }}</td></tr>
+        <tr><td><div style="background-position:{{ entry.icon_picker() | safe }}"></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td><td>{{ entry.formatted_last_modified() | safe }}</td><td>{{ entry.formatted_size() | safe }}</td></tr>
         {% endfor %}
 
         </tbody>
     </table>
-    <footer><a href="/about_skyfolder">About SkyFolder</a></footer>
+    <footer><a href="/about_skyfolder">SkyFolder Fileserver</a></footer>
 
 </section>
 
-<div id="pane"></div>
+<div id="pane">
+    {{ current_location_name }}
+</div>
 
 </body>
 </html>

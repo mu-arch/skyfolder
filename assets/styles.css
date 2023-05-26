@@ -133,7 +133,6 @@ thead, tbody {
     display: contents;
 }
 
-
 tr {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
@@ -158,8 +157,7 @@ td {
     padding: 22px 10px;
 }
 
-
-.size span {
+td:nth-child(3) span {
     padding: 2px 4px;
     background-color: #eaedee;
     text-transform: uppercase;
@@ -170,7 +168,7 @@ td {
     top: -1px;
 }
 
-td.name {
+td:nth-child(1) {
     position: relative;
     color: #000;
     cursor: pointer;
@@ -179,7 +177,7 @@ td.name {
 }
 
 
-td.name a {
+td:nth-child(1) a {
     font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
@@ -188,7 +186,7 @@ td.name a {
     line-height: 1em;
 }
 
-td.name::after {
+td:nth-child(1)::after {
     content: '';
     position: absolute;
     right: 0;
@@ -198,13 +196,11 @@ td.name::after {
     pointer-events: none;
 }
 
-
-
-td.name:hover a {
+td:nth-child(1):hover a {
     text-decoration: underline;
 }
 
-td.name div {
+td:nth-child(1) div {
     display: inline-block;
     background: url('/spritesheet.webp');
     scale:.25;

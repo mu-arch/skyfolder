@@ -47,3 +47,6 @@ Coming soon.
 ## Security notice
 
 If you plan to use the management features from outside your LAN (over the internet) it's important to use a TLS cert otherwise your management credentials can be sniffed.
+
+## Limitations
+- Most functionality requires Javascript to work

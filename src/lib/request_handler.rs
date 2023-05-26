@@ -85,7 +85,7 @@ pub struct DirectoryTemplate<'a> {
     title: String,
     relative_path: &'a str,
     entries: &'a Vec<DirEntry>,
-    version: &'a str
+    current_location_name: &'a str,
 }
 pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
@@ -93,13 +93,21 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
     let folder_name = relative_path.file_name().unwrap_or(OsStr::new("Home")).to_string_lossy();
     let title = format!("{folder_name} - {title}");
 
+    let mut current_location_name: &str = "";
+
+    if let Some(name) = relative_path.file_name() {
+        if let Some(name_str) = name.to_str() {
+            current_location_name = name_str
+        }
+    }
+
     let relative_path = relative_path.to_str().unwrap_or_else(|| "");
 
     let template = DirectoryTemplate {
         title,
         relative_path,
         entries,
-        version: VERSION
+        current_location_name,
     };
 
     Ok(template.render()?)
@@ -118,28 +126,28 @@ impl DirEntry {
             None => "-".to_string(),
         }
     }
-    pub fn icon_picker(&self) -> String {
+    pub fn icon_picker(&self) -> &str {
         let position_text = if self.is_dir {
-            "-128px 0px".to_owned()
+            "-128px 0px"
         } else {
             let name = &self.name.to_lowercase();
             match &name.rfind('.').map(|i| &name[i + 1..]) {
-                Some("rs") => "0px -128px".to_owned(),
-                Some("iso") => "-384px 0px".to_owned(),
-                Some("json") | Some("js") => "-512px 0px".to_owned(),
-                Some("py") => "-640px 0px".to_owned(),
-                Some("zip") | Some("gz") | Some("rar") | Some("7z") | Some("tar") | Some("bz2") | Some("xz") => "-768px 0px".to_owned(),
-                Some("pdf") => "-896px 0px".to_owned(),
-                Some("jpg") | Some("jpeg") => "-512px -128px".to_owned(),
-                Some("svg")  => "-384px -128px".to_owned(),
-                Some("png")  => "-640px -128px".to_owned(),
-                Some("gif")  => "-896px -128px".to_owned(),
-                Some("ds_store")  => "-768px -128px".to_owned(),
-                _ => "-256px 0px".to_owned()
+                Some("rs") => "0px -128px",
+                Some("iso") => "-384px 0px",
+                Some("json") | Some("js") => "-512px 0px",
+                Some("py") => "-640px 0px",
+                Some("zip") | Some("gz") | Some("rar") | Some("7z") | Some("tar") | Some("bz2") | Some("xz") => "-768px 0px",
+                Some("pdf") => "-896px 0px",
+                Some("jpg") | Some("jpeg") => "-512px -128px",
+                Some("svg")  => "-384px -128px",
+                Some("png")  => "-640px -128px",
+                Some("gif")  => "-896px -128px",
+                Some("ds_store")  => "-768px -128px",
+                _ => "-256px 0px"
             }
         };
 
-        format!("style=\"background-position:{position_text}\"")
+        position_text
     }
 }
 
