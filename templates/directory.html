@@ -27,9 +27,7 @@
         </thead>
         <tbody>
 
-        {% for entry in entries %}
-        <tr><td><div style="background-position:{{ entry.icon_picker() | safe }}"></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td><td>{{ entry.formatted_last_modified() | safe }}</td><td>{{ entry.formatted_size() | safe }}</td></tr>
-        {% endfor %}
+        {% for entry in entries %}<tr><td><div></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td><td>{{ entry.formatted_last_modified() | safe }}</td><td>{{ entry.formatted_size() | safe }}</td></tr>{% endfor %}
 
         </tbody>
     </table>

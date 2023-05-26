@@ -202,7 +202,7 @@ td:nth-child(1):hover a {
 
 td:nth-child(1) div {
     display: inline-block;
-    background: url('/spritesheet.webp');
+    background: url('/spritesheet.webp') -256px 0px;
     scale:.25;
     width: 128px;
     height: 128px;

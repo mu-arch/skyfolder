@@ -126,29 +126,6 @@ impl DirEntry {
             None => "-".to_string(),
         }
     }
-    pub fn icon_picker(&self) -> &str {
-        let position_text = if self.is_dir {
-            "-128px 0px"
-        } else {
-            let name = &self.name.to_lowercase();
-            match &name.rfind('.').map(|i| &name[i + 1..]) {
-                Some("rs") => "0px -128px",
-                Some("iso") => "-384px 0px",
-                Some("json") | Some("js") => "-512px 0px",
-                Some("py") => "-640px 0px",
-                Some("zip") | Some("gz") | Some("rar") | Some("7z") | Some("tar") | Some("bz2") | Some("xz") => "-768px 0px",
-                Some("pdf") => "-896px 0px",
-                Some("jpg") | Some("jpeg") => "-512px -128px",
-                Some("svg")  => "-384px -128px",
-                Some("png")  => "-640px -128px",
-                Some("gif")  => "-896px -128px",
-                Some("ds_store")  => "-768px -128px",
-                _ => "-256px 0px"
-            }
-        };
-
-        position_text
-    }
 }
 
 trait FormatPath {
