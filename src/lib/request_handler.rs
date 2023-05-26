@@ -122,9 +122,18 @@ impl DirEntry {
         let position_text = if self.is_dir {
             "-128px 0px".to_owned()
         } else {
-            match &self.name.rfind('.').map(|i| &self.name[i + 1..]) {
+            let name = &self.name.to_lowercase();
+            match &name.rfind('.').map(|i| &name[i + 1..]) {
                 Some("rs") => "0px -128px".to_owned(),
                 Some("iso") => "-384px 0px".to_owned(),
+                Some("json") | Some("js") => "-512px 0px".to_owned(),
+                Some("py") => "-640px 0px".to_owned(),
+                Some("zip") | Some("gz") | Some("rar") | Some("7z") | Some("tar") | Some("bz2") | Some("xz") => "-768px 0px".to_owned(),
+                Some("pdf") => "-896px 0px".to_owned(),
+                Some("jpg") | Some("jpeg") => "-512px -128px".to_owned(),
+                Some("svg")  => "-384px -128px".to_owned(),
+                Some("png")  => "-640px -128px".to_owned(),
+                Some("ds_store")  => "-768px -128px".to_owned(),
                 _ => "-256px 0px".to_owned()
             }
         };

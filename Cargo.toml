@@ -2,6 +2,8 @@
 name = "skyfolder"
 version = "0.1.0"
 edition = "2021"
+license = "GPL-3.0"
+description = "SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management graphical interface."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
