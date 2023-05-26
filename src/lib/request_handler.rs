@@ -10,6 +10,7 @@ use axum::debug_handler;
 use crate::AppState;
 use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
 use std::ffi::OsStr;
+use std::time::{SystemTime, UNIX_EPOCH};
 use bytes::Bytes;
 use crate::VERSION;
 
@@ -114,18 +115,114 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
 }
 
 impl DirEntry {
-    pub fn formatted_last_modified(&self) -> String {
+    pub fn display_modified_raw(&self) -> String {
         match &self.last_modified {
             Some(date) => date.to_string(),
-            None => "-".to_string(),
+            None => "?".to_string(),
         }
     }
-    pub fn formatted_size(&self) -> String {
+    pub fn display_size_raw(&self) -> String {
         match self.size {
             Some(size) => size.to_string(),
-            None => "-".to_string(),
+            None => "?".to_string(),
         }
     }
+    pub fn icon_picker(&self) -> &str {
+        // The `position_text` variable stores the position of the icon in the sprite sheet
+        // The coordinates are assigned based on whether the item is a directory or a file with a specific extension
+        let position_text = if self.is_dir {
+            // If the item is a directory, its icon is located at "-128px 0px" in the sprite sheet
+            "-128px 0px"
+        } else {
+            // If the item is not a directory, it's a file. We need to look at the file's extension
+            let name = &self.name.to_lowercase();
+
+            // We find the last occurrence of the '.' character in the name,
+            // and slice the string from one character after this position to the end, to get the file extension
+            match &name.rfind('.').map(|i| &name[i + 1..]) {
+                // Depending on the extension, we match the appropriate icon from the sprite sheet
+                Some("rs") => "0px -128px",
+                Some("iso") => "-384px 0px",
+                Some("json") | Some("js") => "-512px 0px",
+                Some("py") => "-640px 0px",
+                Some("zip") | Some("gz") | Some("rar") | Some("7z") | Some("tar") | Some("bz2") | Some("xz") => "-768px 0px",
+                Some("pdf") => "-896px 0px",
+                Some("jpg") | Some("jpeg") => "-512px -128px",
+                Some("svg")  => "-384px -128px",
+                Some("png")  => "-640px -128px",
+                Some("gif")  => "-896px -128px",
+                Some("ds_store")  => "-768px -128px",
+                // If we can't match the extension to any of the above, we use a default icon located at "-256px 0px"
+                _ => "-256px 0px"
+            }
+        };
+
+        // Return the coordinates of the appropriate icon
+        position_text
+    }
+
+
+    pub fn format_file_size(&self) -> String {
+        let units = vec!["b", "kb", "mb", "gb", "tb"];
+        let kib = 1024.0;
+
+        let bytes = match self.size {
+            Some(b) => b as f64,
+            None => return "-".to_string(),
+        };
+
+        if bytes == 0.0 || bytes.is_nan() {
+            return "-".to_string();
+        }
+
+        let base = f64::log(bytes, kib).floor() as usize;
+        if base >= units.len() {
+            return "Too Large".to_string();
+        }
+
+        let adjusted_bytes = bytes / f64::powi(kib, base as i32);
+        let unit = &units[base];
+
+        if f64::round(adjusted_bytes.fract() * 10.0) == 0.0 {
+            return format!("{} <span>{}</span>", adjusted_bytes.floor(), unit);
+        } else {
+            let formatted_adjusted_bytes = format!("{:.1}", adjusted_bytes);
+            return format!("{} <span>{}</span>", formatted_adjusted_bytes.trim_end_matches(".0"), unit);
+        }
+    }
+
+
+
+
+
+    pub fn format_time_ago(&self) -> String {
+        let current_time = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
+        let time_difference = match self.last_modified {
+            Some(time) => current_time - time,
+            None => return "Unknown".to_string(),
+        };
+
+        if time_difference < 60 {
+            return "Just now".to_string();
+        }
+
+        let minutes = time_difference / 60;
+
+        if minutes < 60 {
+            return format!("{} {} ago", minutes, if minutes == 1 { "minute" } else { "minutes" });
+        }
+
+        let hours = minutes / 60;
+
+        if hours < 24 {
+            return format!("{} {} ago", hours, if hours == 1 { "hour" } else { "hours" });
+        }
+
+        let days = hours / 24;
+
+        format!("{} {} ago", days, if days == 1 { "day" } else { "days" })
+    }
+
 }
 
 trait FormatPath {

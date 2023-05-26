@@ -24,6 +24,7 @@ clap = { version = "4.3.0", features = ["cargo"]}
 get_if_addrs = "0.5.3"
 chrono = "0.4"
 bytes = "1.4.0"
+#smartstring = "1.0.1" eventually use this
 
 [profile.release]
 #debug = 1
