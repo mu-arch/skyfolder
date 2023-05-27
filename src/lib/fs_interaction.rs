@@ -1,8 +1,12 @@
-use std::path::Path;
+use std::path::{Path, PathBuf};
+use axum::response::Response;
 use tokio::fs;
 use crate::lib::errors::{AppErrorExternal};
 use chrono::DateTime;
 use chrono::Utc;
+use hyper::Body;
+use tokio::fs::File;
+
 
 #[derive(Debug)]
 pub struct DirEntry {
@@ -42,4 +46,13 @@ pub async fn list_dir_contents(dir: &Path) -> Result<Vec<DirEntry>, AppErrorExte
     Ok(entries)
 }
 
+pub async fn serve_file(path: &PathBuf) -> Result<Body, AppErrorExternal> {
 
+    let file = File::open(path).await?;
+
+    // Create a FramedRead using the BytesCodec
+    let stream = tokio_util::io::ReaderStream::new(file);
+
+    // Convert the stream into a hyper Body and return
+    Ok(Body::wrap_stream(stream))
+}

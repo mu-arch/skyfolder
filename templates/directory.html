@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A folder has been shared with you. Open now to browse.">
     <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ self.css() }}">
     <meta property="og:title" content="{{ title }}"/>
     <meta property="og:description" content="A folder has been shared with you. Open now to browse."/>
     <meta property="og:image" content="https://raw.githubusercontent.com/mu-arch/skyfolder/master/hosted/og_image.jpg"/>
@@ -15,7 +15,9 @@
 
 <body>
 <section>
-    <header><div title="Home" onclick="navurl('/')"><span class="logo"></span></div>{{ relative_path.format_path() | safe }}</header>
+    <header>
+        <div title="Home" onclick="navurl('/')"><span class="logo"></span></div><nav></nav>
+    </header>
 
     <table id="table">
         <thead>
@@ -42,7 +44,7 @@
 
         </tbody>
     </table>
-    <footer><a href="/about_skyfolder">The SkyFolder Fileserver</a></footer>
+    <footer><a href="/about_skyfolder">SkyFolder</a></footer>
 
 </section>
 
@@ -53,4 +55,4 @@
 </body>
 </html>
 
-<script src="/scripts.js"></script>
+<script src="{{ self.js() }}"></script>

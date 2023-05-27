@@ -5,18 +5,23 @@ edition = "2021"
 license = "GPL-3.0"
 description = "SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management graphical interface."
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+build = "build.rs"
+
+[build-dependencies]
+rand = "0.8.5"
 
 [dependencies]
 tokio = { version = "1.28.1", features = ["macros","rt-multi-thread", "signal", "sync", "full"] }
 tikv-jemallocator = "0.5"
-tower-http = { version = "0.4.0", features = ["fs"]}
 
 axum = { version = "0.6.18", features = ["macros"]}
 askama = "0.12.0"
 askama_axum = "0.3.0"
 hyper = "0.14.26"
-
+tower = "0.4.13"
+tower-http = "0.4.0"
+tower-layer = "0.3.2"
+tokio-util = {version = "0.7.1", features = ["io"]}
 
 
 

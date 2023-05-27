@@ -18,7 +18,7 @@ function navurl(url) {
 */
 
 function first_run_manifest() {
-    formatTableRows()
+
 }
 
 document.addEventListener('DOMContentLoaded', first_run_manifest);

@@ -12,15 +12,18 @@ use crate::lib::errors::AppErrorInternal;
 use axum::routing::get;
 use axum::{Extension, Server};
 
+
 mod lib {
     pub(crate) mod errors;
     pub(crate) mod fs_interaction;
     pub(crate) mod parse_cli_args;
     pub(crate) mod request_handler;
     pub(crate) mod helper;
+    pub(crate) mod services;
 }
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
+include!(concat!(env!("OUT_DIR"), "/constants.rs"));
 
 #[tokio::main]
 async fn main() {
@@ -71,15 +74,16 @@ async fn init() -> Result<(), AppErrorInternal> {
         }
     }
 
+
     let app = axum::Router::new()
         .route("/", get(request_handler::handle_root_path))
         .route("/*path", get(request_handler::handle_path))
         .route("/about_skyfolder", get(request_handler::build_about))
         .layer(Extension(app_state.clone()))
-        .route("/spritesheet.webp", get(request_handler::serve_spritesheet))
-        .route("/favicon.ico", get(request_handler::serve_favicon))
-        .route("/styles.css", get(request_handler::serve_css))
-        .route("/scripts.js", get(request_handler::serve_js));
+        .route(SPRITES_FILENAME, get(request_handler::serve_spritesheet))
+        .route(CSS_FILENAME, get(request_handler::serve_css))
+        .route(JS_FILENAME, get(request_handler::serve_js))
+        .route("/favicon.ico", get(request_handler::serve_favicon));
 
     Server::bind(&format!("0.0.0.0:{}", app_state.port).parse()?)
         .serve(app.into_make_service())

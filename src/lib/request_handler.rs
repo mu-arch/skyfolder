@@ -12,6 +12,7 @@ use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
 use std::ffi::OsStr;
 use std::time::{SystemTime, UNIX_EPOCH};
 use bytes::Bytes;
+use crate::lib::fs_interaction;
 use crate::VERSION;
 
 pub enum ResponseWrapper {
@@ -112,6 +113,15 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
     };
 
     Ok(template.render()?)
+}
+
+impl<'a> DirectoryTemplate<'a> {
+    fn js(&self) -> &'static str {
+        crate::JS_FILENAME
+    }
+    fn css(&self) -> &'static str {
+        crate::CSS_FILENAME
+    }
 }
 
 impl DirEntry {
@@ -253,7 +263,7 @@ impl FormatPath for &str {
 
 // embedding this data in the binary allows it to work without external files
 static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.webp"));
-static STYLES: Bytes = Bytes::from_static(include_bytes!("../../assets/styles.css"));
+
 static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));
 static FAVICON: Bytes = Bytes::from_static(include_bytes!("../../assets/favicon.ico"));
 
@@ -285,7 +295,7 @@ pub async fn serve_css() -> Result<impl IntoResponse, AppErrorExternal> {
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "text/css")
             .header("Cache-Control", "public, max-age=7884000")
-            .body(Body::from(&*STYLES))?
+            .body(Body::from(crate::STYLES))?
     )
 }
 
