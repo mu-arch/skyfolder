@@ -68,9 +68,9 @@ section {
 
 header {
     margin: 5px 0 35px 0;
-    display: inline-block;
     background-color: #f1f1f1;
     border-radius: 20px;
+    display: inline-flex;
 }
 
 header > div:first-of-type {

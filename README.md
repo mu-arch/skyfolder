@@ -1,4 +1,4 @@
-# <img align="right" src="hosted/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
+# <img align="right" src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
 
 ### Easily share your files & folders online with minimal configuration BS. It's like your own personal Google Drive!
 
@@ -6,28 +6,30 @@ SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with frie
 
 ### Screenshot:
 
-![Screenshot](Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
+![Screenshot](https://github.com/mu-arch/skyfolder/raw/master/Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
 
 ### Features:
-- Downloads & uploads
+- Downloads & uploads (Both pausable and resumable)
 - Create, Delete, Rename directories
 - Sort the list by multiple parameters
-- Password and ACL policy on folders
+- ACLs with granular control
 - No third party services. Runs completely on your PC or server
-- Multiple views: list view, icon view, gallery view
-- In-browser file-viewer and streaming with real-time transcoding
+- Multiple views: list view, icon view
+- In-browser file-viewer and streamer
 - Built in search engine
 - Low resource footprint (~10mb DRAM when idle, suitable for running 24/7 in background)
 - Run on GNU/Linux, BSD, Windows, Mac
 - TLS cert support with built-in automatic Let's Encrypt client!
-- Bittorrent tracker (incomplete, in research)
-- OS toast notification when someone downloads a file from you
 - Run for years without restart if needed
 - No telemetry, the SkyFolder makes no outgoing connections, only serves clients connecting to it
 - Secure to expose to the open internet
 - Management GUI that generates Gura markup for you in the background (not required, you can edit the Gura yourself)
-- Multiple download methods: HTTP GET, HTTP JS managed File System Access API based download, built in bittorrent tracker that supports downloading via torrent magnet.
+- Multiple download methods: HTTP GET, HTTP JS managed File System Access API, bittorrent magnet
 - Utilizes all CPU cores and available bandwidth, supports partial files and retries, generates thumbnails, supports directories with thousands of files
+
+### Roadmap
+- Bittorrent tracker and seeding client so you can download files via your favorite client and seed to others
+- OS toast notification when someone downloads a file from you
 
 ### Help needed:
 - Mobile version
