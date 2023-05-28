@@ -15,7 +15,7 @@ No need to install anything. SkyFolder is a single portable executable file.
 - Downloads & uploads (Both pausable and resumable)
 - Create, Delete, Rename directories
 - Sort the list by multiple parameters
-- ACLs with granular control
+- Access Control Lists (ACL) for managing permissions on a per folder/user basis
 - Portable. Nothing to install or program files to manage. It's all conveniently packaged in a single executable file
 - No third party services. Runs completely on your PC or server
 - Multiple views: list view, icon view
