@@ -86,7 +86,7 @@ pub async fn build_dir_page(title_name: &Option<String>, root_path: &std::path::
 pub struct DirectoryTemplate<'a> {
     title: String,
     relative_path: &'a str,
-    entries: &'a Vec<DirEntry>,
+    entries: &'a [DirEntry],
     current_location_name: &'a str,
     path_parts: Vec<PathPart<'a>>,
 }
@@ -96,35 +96,27 @@ pub struct PathPart<'a> {
     pub url: &'a str,
 }
 
-
-pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
-
+pub async fn build_template(title_name: &Option<String>, entries: &[DirEntry], relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
     let title = title_name.as_deref().unwrap_or_else(|| "SkyFolder");
-    let folder_name = relative_path.file_name().unwrap_or(OsStr::new("Home")).to_string_lossy();
+    let folder_name = relative_path.file_name().and_then(OsStr::to_str).unwrap_or_else(|| "Home");
     let title = format!("{folder_name} - {title}");
-
-    let mut current_location_name: &str = "";
-
-    if let Some(name) = relative_path.file_name() {
-        if let Some(name_str) = name.to_str() {
-            current_location_name = name_str
-        }
-    }
+    let current_location_name = folder_name;
 
     let relative_path_str = relative_path.to_str().unwrap_or_else(|| "");
 
     let mut path_parts: Vec<PathPart> = Vec::new();
-    let mut last_index: usize = 0;
 
-    for (index, character) in relative_path_str[1..].char_indices() {
-        if character == '/' {
-            let name = &relative_path_str[last_index..index+1];
-            let url = &relative_path_str[..index+2];
-            path_parts.push(PathPart { name, url });
-            last_index = index + 2;
+    if relative_path_str.len() > 1 {
+        let mut last_index: usize = 0;
+        for (index, character) in relative_path_str[1..].char_indices() {
+            if character == '/' {
+                let name = &relative_path_str[last_index..index+1];
+                let url = &relative_path_str[..index+2];
+                path_parts.push(PathPart { name, url });
+                last_index = index + 2;
+            }
         }
     }
-
 
     let template = DirectoryTemplate {
         title,
@@ -136,6 +128,7 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
 
     Ok(template.render()?)
 }
+
 
 
 
