@@ -88,7 +88,15 @@ pub struct DirectoryTemplate<'a> {
     relative_path: &'a str,
     entries: &'a Vec<DirEntry>,
     current_location_name: &'a str,
+    path_parts: Vec<PathPart<'a>>,
 }
+
+pub struct PathPart<'a> {
+    pub name: &'a str,
+    pub url: &'a str,
+}
+
+
 pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>, relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
 
     let title = title_name.as_deref().unwrap_or_else(|| "SkyFolder");
@@ -103,17 +111,33 @@ pub async fn build_template(title_name: &Option<String>, entries: &Vec<DirEntry>
         }
     }
 
-    let relative_path = relative_path.to_str().unwrap_or_else(|| "");
+    let relative_path_str = relative_path.to_str().unwrap_or_else(|| "");
+
+    let mut path_parts: Vec<PathPart> = Vec::new();
+    let mut last_index: usize = 0;
+
+    for (index, character) in relative_path_str[1..].char_indices() {
+        if character == '/' {
+            let name = &relative_path_str[last_index..index+1];
+            let url = &relative_path_str[..index+2];
+            path_parts.push(PathPart { name, url });
+            last_index = index + 2;
+        }
+    }
+
 
     let template = DirectoryTemplate {
         title,
-        relative_path,
+        relative_path: relative_path_str,
         entries,
         current_location_name,
+        path_parts,
     };
 
     Ok(template.render()?)
 }
+
+
 
 impl<'a> DirectoryTemplate<'a> {
     fn js(&self) -> &'static str {
@@ -236,27 +260,19 @@ impl DirEntry {
 }
 
 trait FormatPath {
-    fn format_path(&self) -> String;
+    fn format_path(&self) -> Vec<&str>;
 }
 
 impl FormatPath for &str {
-    fn format_path(&self) -> String {
-        let mut formatted_path = String::new();
-        let path_parts: Vec<&str> = self.split('/').collect();
-        let mut relative_path = String::from("/");
-        for part in path_parts {
-            if !part.is_empty() {
-                relative_path.push_str(part);
-                relative_path.push('/');
-                formatted_path.push_str(&format!(
-                    "<div onclick=\"navurl('{}')\"><span>{}/</span></div>",
-                    relative_path, part
-                ));
-            }
+    fn format_path(&self) -> Vec<&str> {
+        let mut path_parts: Vec<&str> = self.split('/').collect();
+        if self.ends_with('/') {
+            path_parts.pop();
         }
-        formatted_path
+        path_parts
     }
 }
+
 
 
 

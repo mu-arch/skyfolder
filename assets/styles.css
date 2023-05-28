@@ -57,6 +57,15 @@ section {
     width: calc(100% - 350px);
 }
 
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 50px 100px 0 100px;
+    border-color: transparent transparent transparent black;
+}
+
+
 header {
     margin: 5px 0 35px 0;
     display: inline-block;
