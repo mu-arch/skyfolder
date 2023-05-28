@@ -1,6 +1,7 @@
 # <img align="right" src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
 
-### Easily share your files & folders on the network with minimal configuration BS. Securely turn your computer into your own personal Google Drive!
+### Easily share your files & folders on the network with minimal configuration BS. 
+### Securely turn your computer into your own personal Google Drive!
 
 SkyFolder is a self-contained HTTP/Bittorrent server for hosting a website to share files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure anything. Ships with good defaults and includes a built-in management graphical interface.
 
