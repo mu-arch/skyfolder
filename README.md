@@ -1,8 +1,11 @@
 # <img align="right" src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> SkyFolder
 
-### Easily share your files & folders on the network. Securely turn your computer into your own personal Google Drive!
+### Easily share your files & folders on the network. Security, Simplicity, Style all built in.
+### It's like your own personal Google Drive!
 
-SkyFolder is a self-contained HTTP/Bittorrent server for hosting a website to share files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure anything. Ships with good defaults and includes a built-in management graphical interface.
+SkyFolder is a self-contained portable HTTP/Bittorrent server that hosts a website for immediate filesharing with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure anything. Ships with good defaults and includes a built-in management graphical interface.
+
+No need to install anything. SkyFolder is a single portable executable file.
 
 ### Screenshot:
 
@@ -13,6 +16,7 @@ SkyFolder is a self-contained HTTP/Bittorrent server for hosting a website to sh
 - Create, Delete, Rename directories
 - Sort the list by multiple parameters
 - ACLs with granular control
+- Portable. Nothing to install or program files to manage. It's all conveniently packaged in a single executable file
 - No third party services. Runs completely on your PC or server
 - Multiple views: list view, icon view
 - In-browser file-viewer and streamer
@@ -44,7 +48,7 @@ SkyFolder is a self-contained HTTP/Bittorrent server for hosting a website to sh
 
 ### How to install:
 
-Coming soon.
+Coming next week.
 
 ## Security notice
 
