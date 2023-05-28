@@ -2,6 +2,16 @@ function navurl(url) {
     window.location.href = url;
 }
 
+function checkIfTbodyIsEmpty() {
+    const table = document.querySelector('#table');
+    const tbody = table.querySelector('tbody');
+
+    if (tbody.children.length === 0) {
+        table.querySelector('thead tr:last-child').style = 'border-bottom: 1px solid #e5e5e5';
+    }
+}
+
+
 //onmouseover="preloadNextPage(this)"
 
 /*function preloadNextPage(element) {
@@ -18,7 +28,7 @@ function navurl(url) {
 */
 
 function first_run_manifest() {
-
+    checkIfTbodyIsEmpty()
 }
 
 document.addEventListener('DOMContentLoaded', first_run_manifest);
