@@ -29,7 +29,10 @@ No need to install anything. SkyFolder is a single portable executable file.
 - Secure to expose to the open internet
 - Management GUI that generates Gura markup for you in the background (not required, you can edit the Gura yourself)
 - Multiple download methods: HTTP GET, HTTP JS managed File System Access API, bittorrent magnet
-- Utilizes all CPU cores and available bandwidth, supports partial files and retries, generates thumbnails, supports directories with thousands of files
+- Utilizes all CPU cores and available bandwidth, can serve files at gigabit speeds with hundreds of active downloaders
+- Supports partial files and retries
+- Generates image and video thumbnails
+- Supports directories with tens of thousands of files
 
 ### Roadmap
 - Bittorrent tracker and seeding client so you can download files via your favorite client and seed to others
