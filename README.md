@@ -43,7 +43,7 @@ No need to install anything. SkyFolder is a single portable executable file.
 - Dark mode
 - General testing
 - Penetration Testing
-- Automated tests
+- Unit tests
 - Implementing Bittorrent
 - Polish and improve UI, more clever thoughtfulness towards the UI is always desired
 - Your feedback (there's no such thing as a stupid/trite question/comment here)
