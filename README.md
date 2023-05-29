@@ -14,42 +14,45 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 ![Screenshot](https://github.com/mu-arch/skyfolder/raw/master/Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
 
 ### Features:
-- Downloads & uploads (Both pausable and resumable)
-- Create, Delete, Rename directories
-- Sort the list by multiple parameters
-- Access Control Lists (ACL) for managing permissions on a per folder/user basis
-- Portable. Nothing to install or program files to manage. It's all conveniently packaged in a single executable file
-- No third party services. Runs completely on your PC or server
-- Multiple views: list view, icon view
-- In-browser file-viewer and streamer
-- Built in search engine
-- Low resource footprint (~10mb DRAM when idle, suitable for running 24/7 in background)
-- Run on GNU/Linux, BSD, Windows, Mac
-- TLS cert support with built-in automatic Let's Encrypt client!
-- Run for years without restart if needed
-- No telemetry, the SkyFolder makes no outgoing connections, only serves clients connecting to it
-- Secure to expose to the open internet
-- Management GUI that generates Gura markup for you in the background (not required, you can edit the Gura yourself)
-- Multiple download methods: HTTP GET, HTTP JS managed File System Access API, bittorrent magnet
-- Utilizes all CPU cores and available bandwidth, can serve files at gigabit speeds with hundreds of active downloaders
-- Supports partial files and retries
-- Generates image and video thumbnails
-- Supports directories with tens of thousands of files
+
+1. Downloads & uploads (Both pausable/resumable using TUS).
+2. Create, Delete, Rename directories.
+3. Sort the list by multiple parameters.
+4. Access Control Lists (ACL) for managing permissions on a per folder/user basis.
+5. Portable - requires no installation or management of program files; everything is packaged in a single executable file.
+6. No third party services. Runs completely on your PC or server.
+7. Multiple views: list view, icon view.
+8. In-browser file-viewer and streamer.
+9. Built in search engine (Damerau–Levenshtein distance client-side).
+10. Low resource footprint (~10mb DRAM when idle, suitable for running 24/7 in background).
+11. Compatible with GNU/Linux, BSD, Windows, and Mac.
+12. Supports TLS certificates, including a built-in automatic Let's Encrypt client that can renew certs with no user interaction.
+13. Stable enough to run for years without needing a restart.
+14. No telemetry - Skyfolder doesn't initiate outgoing connections.
+15. Secure to expose to the open internet.
+16. Management GUI that generates [Gura](https://github.com/gura-conf/gura) markup in the background (manual Gura editing is also an option).
+17. Multiple download methods: HTTP GET, HTTP JS managed File System Access API, Bittorrent magnet.
+18. Efficiently utilizes all CPU cores and available bandwidth, capable of serving files at gigabit speeds to hundreds of active downloaders.
+19. Supports partial files (content-range) and retries.
+20. Generates thumbnails for images and videos.
+21. Supports directories with tens of thousands of files.
 
 ### Roadmap
-- Bittorrent tracker and seeding client so you can download files via your favorite client and seed to others
-- OS toast notification when someone downloads a file from you
+
+1. Bittorrent tracker and seeding client so you can download files via your favorite client and seed to others
+2. OS toast notification when someone downloads a file from you
 
 ### Help needed:
-- Mobile version
-- Dark mode
-- General testing
-- Penetration Testing
-- Unit tests
-- Implementing Bittorrent
-- Polish and improve UI, more clever thoughtfulness towards the UI is always desired
-- Your feedback (there's no such thing as a stupid/trite question/comment here)
-- Test if it works on a 32bit computer
+
+1. Mobile version
+2. Dark mode
+3. General testing
+4. Penetration Testing
+5. Unit tests
+6. Implementing Bittorrent
+7. Polish and improve UI, more clever thoughtfulness towards the UI is always desired
+8. Your feedback (there's no such thing as a stupid/trite question/comment here)
+9. Test if it works on a 32bit computer
 
 ### How to install:
 

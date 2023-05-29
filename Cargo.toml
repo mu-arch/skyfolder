@@ -3,7 +3,7 @@ name = "skyfolder"
 version = "0.1.0"
 edition = "2021"
 license = "GPL-3.0"
-description = "SkyFolder is a self-contained HTTP/Bittorrent server for sharing files with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure stuff. Ships with good defaults and includes a built-in management graphical interface."
+description = "Skyfolder is a self-contained portable HTTP/Bittorrent server that hosts a website for immediate filesharing with friends & colleagues. Made for busy people that want to share files NOW, and don't want to remember how to configure anything. Ships with good defaults and includes a built-in management graphical interface."
 
 build = "build.rs"
 
@@ -22,6 +22,7 @@ tower = "0.4.13"
 tower-http = "0.4.0"
 tower-layer = "0.3.2"
 tokio-util = {version = "0.7.1", features = ["io"]}
+#rustls-acme = "0.7.3"
 
 
 
