@@ -7,6 +7,8 @@ SkyFolder is a self-contained portable HTTP/Bittorrent server that hosts a websi
 
 No need to install anything. SkyFolder is a single portable executable file.
 
+![Discord Shield](https://discordapp.com/api/guilds/1112290485323710514/widget.png?style=shield)
+
 ### Screenshot:
 
 ![Screenshot](https://github.com/mu-arch/skyfolder/raw/master/Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
