@@ -57,7 +57,14 @@ Coming next week.
 
 ## Security notice
 
-If you plan to use the management features from outside your LAN (over the internet) it's important to use a TLS cert otherwise your management credentials can be sniffed.
+1. If you plan to use the management features from outside your LAN (over the internet) it's important to use a TLS cert otherwise your management credentials can be sniffed.
+
+2. Skyfolder has not yet been penetration tested.
+
+3. In enviornments that require high security Bittorrent features should be disabled. Magnets can be shared and used by anyone, amongst a host of other issues. Security is not part of Bittorrent's design in general.
+
+4. TLS certificates are integral for encrypting data in transit for all websites, including Skyfolder. However, it's important to understand the limitations of this setup. While TLS provides secure transmission, it does not equate to end-to-end (E2E) encryption. Specifically, Skyfolder does not utilize E2E encryption.
 
 ## Limitations
-- Most functionality requires Javascript to work
+
+1. Most functionality requires Javascript to work
