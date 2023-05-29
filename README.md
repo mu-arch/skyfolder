@@ -65,6 +65,8 @@ Coming next week.
 
 4. TLS certificates are integral for encrypting data in transit for all websites, including Skyfolder. However, it's important to understand the limitations of this setup. While TLS provides secure transmission, it does not equate to end-to-end (E2E) encryption. Specifically, Skyfolder does not utilize E2E encryption.
 
+5. Non-scientific anecdonte, but I personally don't trust the security of Windows or Mac. I would suggest using a Linux or BSD based OS.
+
 ## Limitations
 
 1. Most functionality requires Javascript to work
