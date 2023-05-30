@@ -129,18 +129,6 @@ pub async fn build_template(title_name: &Option<String>, entries: &[DirEntry], r
     Ok(template.render()?)
 }
 
-
-
-
-impl<'a> DirectoryTemplate<'a> {
-    fn js(&self) -> &'static str {
-        crate::JS_FILENAME
-    }
-    fn css(&self) -> &'static str {
-        crate::CSS_FILENAME
-    }
-}
-
 impl DirEntry {
     pub fn display_modified_raw(&self) -> String {
         match &self.last_modified {
@@ -273,7 +261,7 @@ impl FormatPath for &str {
 // embedding this data in the binary allows it to work without external files
 static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.webp"));
 
-static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));
+//static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));
 static FAVICON: Bytes = Bytes::from_static(include_bytes!("../../assets/favicon.ico"));
 
 //serving these files with Axum rather than dynamically templated in with Askama results in better performance and memory usage
@@ -315,7 +303,7 @@ pub async fn serve_js() -> Result<impl IntoResponse, AppErrorExternal> {
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "text/javascript")
             .header("Cache-Control", "public, max-age=7884000")
-            .body(Body::from(&*SCRIPTS))?
+            .body(Body::from(crate::SCRIPTS))?
     )
 }
 

@@ -45,7 +45,7 @@ function fuzzysearch(needle, haystack) {
     }
     return true;
 }
-function marshall_search(query, n, rowMatrix) {
+function marshall_search(query, rowMatrix) {
     const matches = rowMatrix
         .map((row, index) => ({
             index: row[1],  // index of the original row
@@ -53,10 +53,9 @@ function marshall_search(query, n, rowMatrix) {
         }))
         .filter(m => m.match)  // keep only rows where query matches the string
 
-    // return the indexes of the matching rows
-    return matches.slice(0, n).map(m => m.index);
+    // return the indexes of all matching rows
+    return matches.map(m => m.index);
 }
-
 
 function displaySearchResults(indexes) {
     const tbody = document.getElementById('b');  // get the original tbody
@@ -84,8 +83,8 @@ function displaySearchResults(indexes) {
 }
 
 
-function search(query, rows) {
-    let results = marshall_search(query, rows, GLOBAL_TABLE_DATA);
+function search(query) {
+    let results = marshall_search(query, GLOBAL_TABLE_DATA);
     displaySearchResults(results)
 }
 

@@ -4,12 +4,15 @@ use std::path::Path;
 use rand::Rng;
 use rand::distributions::Alphanumeric;
 use std::fmt::Write;
+use minify_js::{Session, TopLevelMode, minify};
 
 fn main() {
     let out_dir = env::var_os("OUT_DIR").unwrap();
     let dest_path = Path::new(&out_dir).join("constants.rs");
 
-    let sprites_filename = format!("/sprites{}.webp", generate_random_string(25));
+    let build_id = generate_random_string(15);
+
+    let sprites_filename = format!("/sprites{}.webp", build_id);
 
     let mut out = String::new();
 
@@ -17,10 +20,21 @@ fn main() {
     let css_file = css_file.replace("/spritesheet.webp", &sprites_filename);
 
     write!(out, "pub const SPRITES_FILENAME: &str = \"{sprites_filename}\";").unwrap();
-    write!(out, "pub const JS_FILENAME: &str = \"/js{}.js\";", generate_random_string(25)).unwrap();
-    write!(out, "pub const CSS_FILENAME: &str = \"/css{}.css\";", generate_random_string(25)).unwrap();
-    //write in the css file with our changes
+    write!(out, "pub const JS_FILENAME: &str = \"/js{}.js\";", build_id).unwrap();
+    write!(out, "pub const CSS_FILENAME: &str = \"/css{}.css\";", build_id).unwrap();
+
+    //write in the css file with our replaced filenames
     write!(out, "pub const STYLES: &[u8] = b\"{css_file}\";").unwrap();
+
+    //minify js
+    let js_file = fs::read_to_string("assets/scripts.js").unwrap();
+    let session = Session::new();
+    let mut minified = Vec::new();
+    minify(&session, TopLevelMode::Global, js_file.as_ref(), &mut minified).unwrap();
+    let js_file = String::from_utf8(Vec::from(minified.as_slice())).unwrap();
+
+    write!(out, "pub const SCRIPTS: &[u8] = b\"{js_file}\";").unwrap();
+
 
     fs::write(
         &dest_path,
