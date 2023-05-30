@@ -15,7 +15,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 
 ### Features:
 
-1. Downloads & uploads (Both pausable/resumable using TUS).
+1. Downloads & uploads (Both pausable/resumable using [TUS](https://github.com/tus/tus-resumable-upload-protocol)).
 2. Create, Delete, Rename directories.
 3. Sort the list by multiple parameters.
 4. Access Control Lists (ACL) for managing permissions on a per folder/user basis.

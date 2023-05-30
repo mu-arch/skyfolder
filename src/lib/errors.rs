@@ -2,7 +2,7 @@
 pub enum AppErrorInternal {
     AddrParseError(std::net::AddrParseError),
     HyperError(hyper::Error),
-    AcmeError(acme_micro::Error),
+    //AcmeError(acme_micro::Error),
     Custom(String),
 }
 
@@ -18,11 +18,14 @@ impl From<hyper::Error> for AppErrorInternal {
     }
 }
 
+/*
 impl From<acme_micro::Error> for AppErrorInternal {
     fn from(inner: acme_micro::Error) -> Self {
         AppErrorInternal::AcmeError(inner)
     }
 }
+
+ */
 
 
 use axum::http::{StatusCode};
