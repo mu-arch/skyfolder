@@ -124,9 +124,11 @@ function displaySearchResults(indexes, searchTerm, limit = Infinity) {
             const aTag = clonedRow.querySelector('td:first-child a');
             if (aTag) {
                 const textContent = aTag.innerHTML;
-                if (textContent.includes(searchTerm)) {
-                    aTag.innerHTML = textContent.replace(searchTerm, `<span>${searchTerm}</span>`);
-                }
+                const searchTermRegExp = new RegExp(`(${searchTerm})`, 'ig'); // 'i' makes it case-insensitive, 'g' is for global search
+                const newTextContent = textContent.replace(searchTermRegExp, function(match) {
+                    return `<span>${match}</span>`;
+                });
+                aTag.innerHTML = newTextContent;
             }
             fragment.appendChild(clonedRow);
         }
@@ -156,7 +158,7 @@ function cleanupSearchResults() {
 function search(query) {
     marshall_search(query, GLOBAL_TABLE_DATA)
         .then(results => {
-            displaySearchResults(results, query, 50)
+            displaySearchResults(results, query.toLowerCase(), 50)
         });
 }
 
