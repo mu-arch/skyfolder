@@ -132,6 +132,10 @@ td:nth-child(1) a {
     line-height: 1em;
 }
 
+td:nth-child(1) a span {
+    background-color: yellow;
+}
+
 td:nth-child(1)::after {
     content: '';
     position: absolute;

@@ -6,6 +6,18 @@ function navurl(url) {
     window.location.href = url;
 }
 
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+
 function check_if_tbody_is_empty() {
     const table = document.querySelector('#table');
     const tbody = table.querySelector('tbody');
@@ -25,62 +37,108 @@ function extractTableData() {
     });
 }
 
-function fuzzysearch(needle, haystack) {
-    var hlen = haystack.length;
-    var nlen = needle.length;
-    if (nlen > hlen) {
-        return false;
-    }
-    if (nlen === hlen) {
-        return haystack.startsWith(needle);
-    }
-    outer: for (var i = 0, j = 0; i < nlen; i++) {
-        var nch = needle.charCodeAt(i);
-        while (j < hlen) {
-            if (haystack.charCodeAt(j++) === nch) {
-                continue outer;
+function workerSearch() {
+    self.onmessage = function(event) {
+        const { query, rowMatrix } = event.data;
+
+        function fuzzysearch(needle, haystack) {
+            var hlen = haystack.length;
+            var nlen = needle.length;
+            if (nlen > hlen) {
+                return false;
             }
+            if (nlen === hlen) {
+                return haystack.startsWith(needle);
+            }
+            outer: for (var i = 0, j = 0; i < nlen; i++) {
+                var nch = needle.charCodeAt(i);
+                while (j < hlen) {
+                    if (haystack.charCodeAt(j++) === nch) {
+                        continue outer;
+                    }
+                }
+                return false;
+            }
+            return true;
         }
-        return false;
-    }
-    return true;
+
+        const matches = rowMatrix
+            .map((row, index) => ({
+                index: row[1],
+                match: fuzzysearch(query, row[0]),
+                // Save the relevance score
+                relevance: row[0].includes(query) ? 0 : 1
+            }))
+            .filter(m => m.match !== false)
+            .sort((a, b) => a.relevance - b.relevance) // Lower scores first
+            .map(m => m.index);
+
+        self.postMessage(matches);
+    };
 }
+
 function marshall_search(query, rowMatrix) {
-    const matches = rowMatrix
-        .map((row, index) => ({
-            index: row[1],  // index of the original row
-            match: fuzzysearch(query, row[0])  // does query match the string?
-        }))
-        .filter(m => m.match)  // keep only rows where query matches the string
+    return new Promise((resolve, reject) => {
+        let workerCode = workerSearch.toString();
+        workerCode = workerCode.slice(workerCode.indexOf("{") + 1, workerCode.lastIndexOf("}"));
 
-    // return the indexes of all matching rows
-    return matches.map(m => m.index);
+        const workerBlob = new Blob([workerCode], { type: "text/javascript" });
+        const workerURL = URL.createObjectURL(workerBlob);
+
+        const worker = new Worker(workerURL);
+        worker.onmessage = function(event) {
+            resolve(event.data);
+        };
+        worker.onerror = function(error) {
+            reject(error);
+        };
+        worker.postMessage({ query, rowMatrix });
+    });
 }
 
-function displaySearchResults(indexes) {
-    const tbody = document.getElementById('b');  // get the original tbody
-    tbody.style.display = 'none';  // set the original tbody to display none
 
-    // if b2 already exists, delete it
-    const oldB2 = document.getElementById('b2');
-    if (oldB2) {
-        oldB2.remove();
-    }
 
-    // create a new tbody with id="b2"
-    const b2 = document.createElement('tbody');
-    b2.id = 'b2';
 
-    // for each index, copy the corresponding row from the original tbody to b2
-    for (const index of indexes) {
-        const row = tbody.rows[index];
-        const clonedRow = row.cloneNode(true);  // clone the row
-        b2.appendChild(clonedRow);  // append the cloned row to b2
-    }
 
-    // insert b2 after the original tbody
-    tbody.parentNode.insertBefore(b2, tbody.nextSibling);
+
+function displaySearchResults(indexes, searchTerm) {
+    requestAnimationFrame(() => {
+        const tbody = document.getElementById('b');  // get the original tbody
+        tbody.style.display = 'none';  // set the original tbody to display none
+
+        // if b2 already exists, delete it
+        const oldB2 = document.getElementById('b2');
+        if (oldB2) {
+            oldB2.remove();
+        }
+
+        // create a new tbody with id="b2"
+        const b2 = document.createElement('tbody');
+        b2.id = 'b2';
+
+        // for each index, copy the corresponding row from the original tbody to b2
+        for (const index of indexes) {
+            const row = tbody.rows[index];
+            const clonedRow = row.cloneNode(true);  // clone the row
+            // search for the first td element and its a tag within the cloned row
+            const aTag = clonedRow.querySelector('td:first-child a');
+            if (aTag) {
+                // get the text content of the a tag
+                const textContent = aTag.innerHTML;
+                // check if it matches the given string
+                if (textContent.includes(searchTerm)) {
+                    // wrap the match in a span element
+                    aTag.innerHTML = textContent.replace(searchTerm, `<span>${searchTerm}</span>`);
+                }
+            }
+            b2.appendChild(clonedRow);  // append the cloned row to b2
+        }
+
+        // insert b2 after the original tbody
+        tbody.parentNode.insertBefore(b2, tbody.nextSibling);
+    });
 }
+
 
 function cleanupSearchResults() {
     // get the original tbody
@@ -99,17 +157,28 @@ function cleanupSearchResults() {
 
 
 function search(query) {
-    let results = marshall_search(query, GLOBAL_TABLE_DATA);
-    displaySearchResults(results)
+    marshall_search(query, GLOBAL_TABLE_DATA)
+        .then(results => {
+            displaySearchResults(results, query)
+        });
 }
 
-function handleSearchInput(event) {
-    var val = event.target.value;
-    if (val === "") {
-        cleanupSearchResults()
-    }
-    search(val);
-}
+var handleSearchInput = (function() {
+    var debouncedSearch = debounce(search, 250);
+
+    return function(event) {
+        var val = event.target.value;
+        if (val === "") {
+            cleanupSearchResults();
+        }
+        if (GLOBAL_TABLE_DATA.length > 200) {
+            debouncedSearch(val);
+        } else {
+            search(val);
+        }
+    };
+})();
+
 
 
 //onmouseover="preloadNextPage(this)"
