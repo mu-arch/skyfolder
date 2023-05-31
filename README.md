@@ -1,7 +1,6 @@
 # <img align="right" src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="SkyFolder Logo" title="SkyFolder" width="250px" height="250px"> Skyfolder
 
 ### Securely host files onto the web directly from your PC.
-Share your link with friends and they can immediately connect direct to you.
 ### It's like your own personal Google Drive!
 
 Skyfolder is a secure, self-contained, portable, HTTP/Bittorrent server that hosts a website for immediate file-sharing with friends, colleagues, or just yourself. Made for busy people that want to share files NOW, and don't want to remember how to configure anything. Ships with good defaults and includes a built-in management graphical interface.
