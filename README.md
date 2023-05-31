@@ -24,7 +24,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 7. Multiple views: list view, icon view.
 8. In-browser file-viewer and streamer.
 9. Search folders on the client-side.
-10. Low resource footprint (~10mb DRAM when idle, suitable for running 24/7 in background).
+10. Low resource footprint (~10mb DRAM when idle, files are streamed off disk in small chunks) suitable to run 24/7.
 11. Compatible with GNU/Linux, BSD, Windows, and Mac.
 12. Supports TLS certificates, including a built-in automatic Let's Encrypt client that can renew certs with no user interaction.
 13. Stable enough to run for years without needing a restart.

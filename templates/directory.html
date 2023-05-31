@@ -16,11 +16,17 @@
 <body>
 <section>
     <header>
-        <div title="Home/" onclick="navurl('/')"><span class="logo"></span></div>
+        <nav>
+            <div title="Home/" onclick="navurl('/')"><span class="logo"></span></div>
 
-        {% for part in path_parts %}
-        <div title="{{ part.name }}/" onclick="navurl('/{{ part.url }}')"><span>{{ part.name }}/</span></div>
-        {% endfor %}
+            {% for part in path_parts %}
+            <div title="{{ part.name }}/" onclick="navurl('/{{ part.url }}')"><span>{{ part.name }}/</span></div>
+            {% endfor %}
+        </nav>
+
+        <div>
+            <input>
+        </div>
     </header>
 
 
@@ -41,7 +47,7 @@
         </div>
         {% else %}
         {% for entry in entries %}
-        <tr><td onclick="navurl('{{ entry.name }}{% if entry.is_dir %}/{% endif %}')"><div style="background-position: {{ entry.icon_picker() | safe}}"></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td>
+        <tr><td><div style="background-position: {{ entry.icon_picker() | safe}}"></div><a href="{{ entry.name }}{% if entry.is_dir %}/{% endif %}">{{ entry.name }}{% if entry.is_dir %}/{% endif %}</a></td>
             <td aria-modified="{{ entry.display_modified_raw() | safe}}">{{ entry.format_time_ago() | safe }}</td>
             <td aria-size="{{ entry.display_size_raw() | safe }}">{{ entry.format_file_size() | safe }}</td></tr>
         {% endfor %}

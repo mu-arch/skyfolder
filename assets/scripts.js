@@ -82,13 +82,34 @@ function displaySearchResults(indexes) {
     tbody.parentNode.insertBefore(b2, tbody.nextSibling);
 }
 
+function cleanupSearchResults() {
+    // get the original tbody
+    const tbody = document.getElementById('b');
+    // set the original tbody to display block (or '' to revert to default CSS value)
+    tbody.style.display = '';
+
+    // get b2
+    const oldB2 = document.getElementById('b2');
+    // if b2 exists, delete it
+    if (oldB2) {
+        oldB2.remove();
+    }
+}
+
+
 
 function search(query) {
     let results = marshall_search(query, GLOBAL_TABLE_DATA);
     displaySearchResults(results)
 }
 
-
+function handleSearchInput(event) {
+    var val = event.target.value;
+    if (val === "") {
+        cleanupSearchResults()
+    }
+    search(val);
+}
 
 
 //onmouseover="preloadNextPage(this)"
@@ -106,9 +127,12 @@ function search(query) {
 }
 */
 
-function first_run_manifest() {
+//manifests run at pageload
+function file_dir_manifest() {
     check_if_tbody_is_empty()
     GLOBAL_TABLE_DATA = extractTableData();
+    document.querySelector('header input').addEventListener('input', handleSearchInput);
+
 }
 
-document.addEventListener('DOMContentLoaded', first_run_manifest);
+document.addEventListener('DOMContentLoaded', file_dir_manifest);

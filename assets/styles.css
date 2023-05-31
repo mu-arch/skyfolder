@@ -66,70 +66,7 @@ section {
 }
 
 
-header {
-    margin: 5px 0 35px 0;
-    background-color: #f1f1f1;
-    border-radius: 20px;
-    display: inline-flex;
-}
 
-header > div:first-of-type {
-    width: 51px;
-    padding: 0;
-}
-
-header > div:first-of-type > span {
-    align-self: flex-start;
-}
-
-header > div:last-of-type {
-    margin-right: 0px;
-}
-
-
-.logo {
-    scale: .2;
-    margin: 7px 0 0 12px;
-    width: 128px;
-    height: 128px;
-    background: url(/spritesheet.webp) no-repeat 0 0;
-    transform-origin: top left;
-    position: absolute;
-}
-
-header div {
-    vertical-align: top;
-    cursor: pointer;
-    background:#fff;
-    border: 1px solid #b8b8b8;
-    box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
-    border-radius: 5px;
-    padding: 0 15px;
-    display: inline-flex;
-    align-items: center;
-    height: 40px;
-    margin-right: 10px;
-    font-weight: bold;
-    font-size: 13px;
-}
-
-header div:hover {
-    background: #efefef;
-}
-
-header > div:only-child {
-    border: 1px transparent;
-    box-shadow: none;
-    pointer-events: none;
-    width: auto;
-}
-
-header > div:only-child .logo{
-    scale: .4;
-    position: relative;
-    top: -15px;
-    left: -12px;
-}
 
 
 table {
