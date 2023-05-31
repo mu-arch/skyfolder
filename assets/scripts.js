@@ -160,13 +160,21 @@ function search(query) {
         });
 }
 
-var handleSearchInput = debounce(function(event) {
-    var val = event.target.value;
-    if (val === "") {
-        cleanupSearchResults()
-    }
-    search(val);
-}, 250);
+var handleSearchInput = (function() {
+    var debouncedSearch = debounce(search, 100);
+
+    return function(event) {
+        var val = event.target.value;
+        if (val === "") {
+            cleanupSearchResults();
+        }
+        if (GLOBAL_TABLE_DATA.length > 200) {
+            debouncedSearch(val);
+        } else {
+            search(val);
+        }
+    };
+})();
 
 
 
