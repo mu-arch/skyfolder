@@ -2,7 +2,7 @@
   <img src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="Skyfolder - Securely host files onto the web directly from your PC" title="SkyFolder" width="250px" height="250px">
 </p>
 
-# Skyfolder - securely host files onto the web directly from your PC
+# Skyfolder - turn any device into a file-server accessible on the web
 
 **It's like your own personal Google Drive!**
 
@@ -15,6 +15,11 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 ### Screenshot:
 
 ![Screenshot](https://github.com/mu-arch/skyfolder/raw/master/Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
+
+### Goals:
+- Secure
+- Braindead simple
+- Stylish
 
 ### Features:
 
