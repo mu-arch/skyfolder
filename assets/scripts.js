@@ -101,40 +101,37 @@ function marshall_search(query, rowMatrix) {
 
 
 
-function displaySearchResults(indexes, searchTerm) {
+function displaySearchResults(indexes, searchTerm, limit = Infinity) {
     requestAnimationFrame(() => {
-        const tbody = document.getElementById('b');  // get the original tbody
-        tbody.style.display = 'none';  // set the original tbody to display none
+        const tbody = document.getElementById('b');
+        tbody.style.display = 'none';
 
-        // if b2 already exists, delete it
         const oldB2 = document.getElementById('b2');
         if (oldB2) {
             oldB2.remove();
         }
 
-        // create a new tbody with id="b2"
         const b2 = document.createElement('tbody');
         b2.id = 'b2';
 
-        // for each index, copy the corresponding row from the original tbody to b2
-        for (const index of indexes) {
+        const limitedIndexes = indexes.slice(0, limit);
+
+        const fragment = document.createDocumentFragment();
+
+        for (const index of limitedIndexes) {
             const row = tbody.rows[index];
-            const clonedRow = row.cloneNode(true);  // clone the row
-            // search for the first td element and its a tag within the cloned row
+            const clonedRow = row.cloneNode(true);
             const aTag = clonedRow.querySelector('td:first-child a');
             if (aTag) {
-                // get the text content of the a tag
                 const textContent = aTag.innerHTML;
-                // check if it matches the given string
                 if (textContent.includes(searchTerm)) {
-                    // wrap the match in a span element
                     aTag.innerHTML = textContent.replace(searchTerm, `<span>${searchTerm}</span>`);
                 }
             }
-            b2.appendChild(clonedRow);  // append the cloned row to b2
+            fragment.appendChild(clonedRow);
         }
 
-        // insert b2 after the original tbody
+        b2.appendChild(fragment);
         tbody.parentNode.insertBefore(b2, tbody.nextSibling);
     });
 }
@@ -159,25 +156,17 @@ function cleanupSearchResults() {
 function search(query) {
     marshall_search(query, GLOBAL_TABLE_DATA)
         .then(results => {
-            displaySearchResults(results, query)
+            displaySearchResults(results, query, 50)
         });
 }
 
-var handleSearchInput = (function() {
-    var debouncedSearch = debounce(search, 250);
-
-    return function(event) {
-        var val = event.target.value;
-        if (val === "") {
-            cleanupSearchResults();
-        }
-        if (GLOBAL_TABLE_DATA.length > 200) {
-            debouncedSearch(val);
-        } else {
-            search(val);
-        }
-    };
-})();
+var handleSearchInput = debounce(function(event) {
+    var val = event.target.value;
+    if (val === "") {
+        cleanupSearchResults()
+    }
+    search(val);
+}, 250);
 
 
 
