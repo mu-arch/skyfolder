@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="Skyfolder - Securely host files onto the web directly from your PC" title="SkyFolder" width="300px" height="250px">
+  <img src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="Skyfolder - Securely host files onto the web directly from your PC" title="SkyFolder" width="250px" height="250px">
 </p>
 
 # Skyfolder - Securely host files onto the web directly from your PC
