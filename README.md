@@ -2,7 +2,7 @@
   <img src="https://github.com/mu-arch/skyfolder/blob/master/hosted/logo.png" alt="Skyfolder - Securely host files onto the web directly from your PC" title="SkyFolder" width="250px" height="250px">
 </p>
 
-# Skyfolder - Securely host files onto the web directly from your PC
+# Skyfolder - securely host files onto the web directly from your PC
 
 **It's like your own personal Google Drive!**
 
@@ -18,7 +18,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 
 ### Features:
 
-1. Downloads & uploads (Both pausable/resumable using [TUS](https://github.com/tus/tus-resumable-upload-protocol)).
+1. Downloads & uploads (Both pausable/resumable).
 2. Create, Delete, Rename directories.
 3. Sort the list by multiple parameters.
 4. Access Control Lists (ACL) for managing permissions on a per folder/user basis.
@@ -26,7 +26,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 6. No third party services. Runs completely on your PC or server.
 7. Multiple views: list view, icon view.
 8. In-browser file-viewer and streamer.
-9. Search folders on the client-side.
+9. Built in search engine with fuzzy finding.
 10. Low resource footprint (~10mb DRAM when idle, files are streamed off disk in small chunks) suitable to run 24/7.
 11. Compatible with GNU/Linux, BSD, Windows, and Mac.
 12. Supports TLS certificates, including a built-in automatic Let's Encrypt client that can renew certs with no user interaction.
