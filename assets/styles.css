@@ -72,7 +72,6 @@ section {
 table {
     width: 100%;
     table-layout: fixed;
-    min-height: calc(100vh - 240px);
 }
 
 thead, tbody {
@@ -165,6 +164,22 @@ table tr:last-child {
     border-bottom: 0;
 }
 
+table caption {
+    caption-side: bottom;
+    text-align: center;
+    margin: 45px 20px;
+    font-size: 12px;
+    background: #f2f2f2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+caption b {
+    font-weight: bold;
+    color: #000;
+}
+
 .folder-empty {
     position: absolute;
     top: 200px;
@@ -199,6 +214,7 @@ table tr:last-child {
 }
 
 footer {
+    display:none;
     padding: 50px 0 10px 0;
     font-size: 10px;
     letter-spacing: 1px;

@@ -134,6 +134,20 @@ function displaySearchResults(indexes, searchTerm, limit = Infinity) {
         }
 
         b2.appendChild(fragment);
+
+        // Add omitted results caption
+        const omittedResults = indexes.length - limitedIndexes.length;
+        const omittedRows = GLOBAL_TABLE_DATA.length - limitedIndexes.length;
+        const resultsCaption = document.createElement('caption');
+        resultsCaption.title = "Click to show all omitted matches.";
+        resultsCaption.innerHTML = `<b>${omittedResults}</b> omitted matches. <b>${omittedRows}</b> total rows excluded.`;
+
+        resultsCaption.addEventListener('click', () => {
+            search(searchTerm, Infinity)
+        });
+
+        b2.appendChild(resultsCaption);
+
         tbody.parentNode.insertBefore(b2, tbody.nextSibling);
     });
 }
@@ -155,10 +169,10 @@ function cleanupSearchResults() {
 
 
 
-function search(query) {
+function search(query, resultLimit) {
     marshall_search(query, GLOBAL_TABLE_DATA)
         .then(results => {
-            displaySearchResults(results, query.toLowerCase(), 50)
+            displaySearchResults(results, query.toLowerCase(), resultLimit)
         });
 }
 
@@ -169,11 +183,12 @@ var handleSearchInput = (function() {
         var val = event.target.value;
         if (val === "") {
             cleanupSearchResults();
-        }
-        if (GLOBAL_TABLE_DATA.length > 200) {
-            debouncedSearch(val);
         } else {
-            search(val);
+            if (GLOBAL_TABLE_DATA.length > 200) {
+                debouncedSearch(val, 50);
+            } else {
+                search(val, 50);
+            }
         }
     };
 })();
