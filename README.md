@@ -16,10 +16,10 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 
 ![Screenshot](https://github.com/mu-arch/skyfolder/raw/master/Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
 
-### Goals:
-- Secure
-- Braindead simple
-- Stylish
+### Priorities:
+1. Secure
+2. Braindead simple
+3. Stylish
 
 ### Features:
 
