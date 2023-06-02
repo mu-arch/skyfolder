@@ -199,7 +199,6 @@ caption {
 
 caption b {
     font-weight: bold;
-    color: #000;
 }
 
 caption:hover {
@@ -208,6 +207,10 @@ caption:hover {
 
 caption:active {
     background: #eeeeee;
+}
+
+caption span {
+    color: #3478F6;
 }
 
 .folder-empty {

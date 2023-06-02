@@ -240,6 +240,7 @@ impl DirEntry {
 
 }
 
+/*
 trait FormatPath {
     fn format_path(&self) -> Vec<&str>;
 }
@@ -253,6 +254,7 @@ impl FormatPath for &str {
         path_parts
     }
 }
+ */
 
 
 

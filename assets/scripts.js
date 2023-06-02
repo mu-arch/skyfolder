@@ -140,7 +140,11 @@ function displaySearchResults(indexes, searchTerm, limit = Infinity) {
         const omittedRows = GLOBAL_TABLE_DATA.length - limitedIndexes.length;
         const resultsCaption = document.createElement('caption');
         resultsCaption.title = "Click to show all omitted matches.";
-        resultsCaption.innerHTML = `<b>${omittedResults}</b> omitted matches. <b>${omittedRows}</b> total rows excluded.`;
+        if (omittedResults > 0) {
+            resultsCaption.innerHTML = `<span><b>${omittedResults}</b> omitted matches</span>. <b>${omittedRows}</b> total rows excluded.`;
+        } else {
+            resultsCaption.innerHTML = `<b>${omittedResults}</b> omitted matches. <b>${omittedRows}</b> total rows excluded.`;
+        }
 
         resultsCaption.addEventListener('click', () => {
             search(searchTerm, Infinity)

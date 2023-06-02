@@ -17,15 +17,14 @@
 <section>
     <header>
         <nav>
-            <div title="Home/" onclick="navurl('/')"><span class="logo"></span></div>
+            <div title="root/" aria-path="{{ relative_path }}"><span class="logo"></span></div>
 
-            {% for part in path_parts %}
-            <div title="{{ part.name }}/" onclick="navurl('/{{ part.url }}')"><span>{{ part.name }}/</span></div>
-            {% endfor %}
         </nav>
 
         <div>
-            <input>
+            <label>
+                <input>
+            </label>
         </div>
     </header>
 
