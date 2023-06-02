@@ -66,7 +66,28 @@ section {
 }
 
 
+.logo {
+    scale: .2;
+    margin: 7px 0 0 12px;
+    width: 128px;
+    height: 128px;
+    background: url(/spritesheet.webp) no-repeat 0 0;
+    transform-origin: top left;
+    position: absolute;
+}
 
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav {
+    /* align to the left */
+}
+
+header > div {
+    /* align to the right */
+}
 
 
 table {
@@ -160,24 +181,33 @@ td:nth-child(1) div {
     top: 13px;
 }
 
-table tr:last-child {
+table tr:last-of-type {
     border-bottom: 0;
 }
 
-table caption {
+caption {
     caption-side: bottom;
     text-align: center;
-    margin: 45px 20px;
+    margin: 20px;
     font-size: 12px;
     background: #f2f2f2;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    user-select:none;
 }
 
 caption b {
     font-weight: bold;
     color: #000;
+}
+
+caption:hover {
+    background: #e8e8e8;
+}
+
+caption:active {
+    background: #eeeeee;
 }
 
 .folder-empty {
