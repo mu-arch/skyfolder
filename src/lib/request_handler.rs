@@ -88,12 +88,6 @@ pub struct DirectoryTemplate<'a> {
     relative_path: &'a str,
     entries: &'a [DirEntry],
     current_location_name: &'a str,
-    path_parts: Vec<PathPart<'a>>,
-}
-
-pub struct PathPart<'a> {
-    pub name: &'a str,
-    pub url: &'a str,
 }
 
 pub async fn build_template(title_name: &Option<String>, entries: &[DirEntry], relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
@@ -104,26 +98,11 @@ pub async fn build_template(title_name: &Option<String>, entries: &[DirEntry], r
 
     let relative_path_str = relative_path.to_str().unwrap_or_else(|| "");
 
-    let mut path_parts: Vec<PathPart> = Vec::new();
-
-    if relative_path_str.len() > 1 {
-        let mut last_index: usize = 0;
-        for (index, character) in relative_path_str[1..].char_indices() {
-            if character == '/' {
-                let name = &relative_path_str[last_index..index+1];
-                let url = &relative_path_str[..index+2];
-                path_parts.push(PathPart { name, url });
-                last_index = index + 2;
-            }
-        }
-    }
-
     let template = DirectoryTemplate {
         title,
         relative_path: relative_path_str,
         entries,
         current_location_name,
-        path_parts,
     };
 
     Ok(template.render()?)
@@ -322,3 +301,5 @@ pub async fn build_about() -> Result<Html<String>, AppErrorExternal> {
 
     Ok(Html::from(template.render()?))
 }
+
+//<input type="text" autocomplete="off">

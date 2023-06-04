@@ -79,11 +79,12 @@ header nav > div {
     background: linear-gradient(to top, #f4f4f4, #fff);
     padding: 0 15px;
     height: 40px;
-    pointer-events: none;
+    user-select: none;
     width: auto;
     display: inline-block;
     vertical-align: top;
     margin-right: 5px;
+    cursor:pointer;
 }
 
 header nav > div:nth-child(2) {
@@ -136,9 +137,49 @@ header nav > div:nth-child(2) > div > span {
 }
 
 
-header > div {
-    /* align to the right */
+header > div > div {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 5px;
+
+    border: 1px solid #b8b8b8;
+    box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
+    background: linear-gradient(to top, #f4f4f4, #fff);
+    user-select: none;
+    vertical-align: top;
+    margin-right: 5px;
+    cursor:pointer;
 }
+
+
+header > div > div:first-child > span {
+    scale: .3;
+    opacity:.7;
+    margin: 12px 0 0 15px;
+    width: 64px;
+    height: 64px;
+    background: url(/spritesheet.webp) no-repeat -128px -256px;
+    transform-origin: top left;
+    position: absolute;
+    left: -4px;
+    top: -1px;
+}
+
+header > div > div:last-child > span {
+    scale: .3;
+    opacity:.7;
+    margin: 12px 0 0 15px;
+    width: 64px;
+    height: 64px;
+    background: url(/spritesheet.webp) no-repeat 0 -320px;
+    transform-origin: top left;
+    position: absolute;
+    left: -4px;
+    top: -1px;
+}
+
 
 
 table {
@@ -155,6 +196,7 @@ tr {
     grid-template-columns: 3fr 1fr 1fr;
     border-bottom: 1px solid #e5e5e5;
     font-size: 14px;
+    position: relative;
 }
 
 th, td {
@@ -230,6 +272,18 @@ td:nth-child(1) div {
     transform-origin: top left;
     position: absolute;
     top: 13px;
+}
+
+tbody tr::after {
+    content: '';
+    background: url('/spritesheet.webp') -128px -320px;
+    scale:.225;
+    opacity:.4;
+    width: 64px;  /* width of your icon */
+    height: 64px;  /* height of your icon */
+    position: absolute;
+    right: -10px;  /* Adjust this value to position your icon on the right */
+    top: -2px;
 }
 
 table tr:last-of-type {
