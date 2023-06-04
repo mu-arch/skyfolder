@@ -78,13 +78,14 @@ header nav > div {
     border-radius: 5px;
     background: linear-gradient(to top, #f4f4f4, #fff);
     padding: 0 15px;
-    height: 40px;
+    height: 35px;
     user-select: none;
     width: auto;
     display: inline-block;
     vertical-align: top;
     margin-right: 5px;
     cursor:pointer;
+    font-size: 14px;
 }
 
 header nav > div:nth-child(2) {
@@ -95,7 +96,7 @@ header nav > div:nth-child(2) {
     text-overflow: ellipsis;
     white-space: nowrap;
     position: relative;
-    line-height: 40px;
+    line-height: 35px;
 }
 
 header nav > div:first-of-type {
@@ -104,8 +105,8 @@ header nav > div:first-of-type {
 }
 
 header nav div span {
-    scale: .21;
-    margin: 6px 0 0 11px;
+    scale: .2;
+    margin: 4px 0 0 12px;
     width: 128px;
     height: 128px;
     background: url(/spritesheet.webp) no-repeat 0 0;
@@ -116,7 +117,7 @@ header nav div span {
 header nav > div:nth-child(2) > div {
     height: 100%;
     border-right: 1px solid #b8b8b8;
-    width: 35px;
+    width: 25px;
     display: inline-block;
     float: left;
     vertical-align: top;
@@ -124,9 +125,9 @@ header nav > div:nth-child(2) > div {
 }
 
 header nav > div:nth-child(2) > div > span {
-    scale: .3;
-    opacity:.7;
-    margin: 12px 0 0 15px;
+    scale: .29;
+    opacity: 1;
+    margin: 9px 0 0 11px;
     width: 64px;
     height: 64px;
     background: url(/spritesheet.webp) no-repeat 0 -256px;
@@ -139,8 +140,8 @@ header nav > div:nth-child(2) > div > span {
 
 header > div > div {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     display: inline-block;
     border-radius: 5px;
     border: 1px solid #b8b8b8;
@@ -151,10 +152,10 @@ header > div > div {
     cursor:pointer;
 }
 
-header > div > div:first-child > span {
-    scale: .3;
-    opacity:.7;
-    margin: 12px 0 0 15px;
+header > div > div > span {
+    scale: .25;
+    opacity: .7;
+    margin: 11px 0 0 14px;
     width: 64px;
     height: 64px;
     background: url(/spritesheet.webp) no-repeat -128px -256px;
@@ -165,16 +166,7 @@ header > div > div:first-child > span {
 }
 
 header > div > div:last-child > span {
-    scale: .3;
-    opacity:.7;
-    margin: 12px 0 0 15px;
-    width: 64px;
-    height: 64px;
-    background: url(/spritesheet.webp) no-repeat 0 -320px;
-    transform-origin: top left;
-    position: absolute;
-    left: -4px;
-    top: -1px;
+    background-position:  0 -320px;
 }
 
 
