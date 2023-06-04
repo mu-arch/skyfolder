@@ -141,9 +141,9 @@ function displaySearchResults(indexes, searchTerm, limit = Infinity) {
         const resultsCaption = document.createElement('caption');
         resultsCaption.title = "Click to show all omitted matches.";
         if (omittedResults > 0) {
-            resultsCaption.innerHTML = `<span><b>${omittedResults}</b> omitted matches</span>. <b>${omittedRows}</b> total rows excluded.`;
+            resultsCaption.innerHTML = `<span><b>${omittedResults}</b> omitted matches</span> <div>-</div> <b>${omittedRows}</b> total rows excluded.`;
         } else {
-            resultsCaption.innerHTML = `<b>${omittedResults}</b> omitted matches. <b>${omittedRows}</b> total rows excluded.`;
+            resultsCaption.innerHTML = `<b>${omittedResults}</b> omitted matches <div>-</div> <b>${omittedRows}</b> total rows excluded`;
         }
 
         resultsCaption.addEventListener('click', () => {

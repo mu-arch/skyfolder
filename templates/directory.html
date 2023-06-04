@@ -17,16 +17,25 @@
 <section>
     <header>
         <nav>
-            <div title="root/" aria-path="{{ relative_path }}"><span class="logo"></span></div>
-
+            <div title="Return to Filesystem Root" aria-path="{{ relative_path }}">
+                <span></span>
+                <div><span></span></div>
+            </div>
+            <div title="{{ current_location_name }}">
+                <div>
+                    <span></span>
+                </div>
+                {{ current_location_name }}
+            </div>
         </nav>
-
         <div>
             <label>
-                <input>
+                <input type="text" autocomplete="off">
             </label>
         </div>
     </header>
+
+
 
 
     <table id="table">

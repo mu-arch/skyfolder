@@ -98,7 +98,7 @@ pub struct PathPart<'a> {
 
 pub async fn build_template(title_name: &Option<String>, entries: &[DirEntry], relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
     let title = title_name.as_deref().unwrap_or_else(|| "SkyFolder");
-    let folder_name = relative_path.file_name().and_then(OsStr::to_str).unwrap_or_else(|| "Home");
+    let folder_name = relative_path.file_name().and_then(OsStr::to_str).unwrap_or_else(|| "Filesystem Root");
     let title = format!("{folder_name} - {title}");
     let current_location_name = folder_name;
 

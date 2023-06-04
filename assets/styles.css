@@ -66,9 +66,45 @@ section {
 }
 
 
-.logo {
-    scale: .2;
-    margin: 7px 0 0 12px;
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 25px 0;
+}
+
+header nav > div {
+    border: 1px solid #b8b8b8;
+    box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
+    border-radius: 5px;
+    background: linear-gradient(to top, #f4f4f4, #fff);
+    padding: 0 15px;
+    height: 40px;
+    pointer-events: none;
+    width: auto;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+header nav > div:nth-child(2) {
+    display: inline-block;
+    font-weight: bold;
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    line-height: 40px;
+}
+
+header nav > div:first-of-type {
+    width: 51px;
+    padding: 0;
+}
+
+header nav div span {
+    scale: .21;
+    margin: 6px 0 0 11px;
     width: 128px;
     height: 128px;
     background: url(/spritesheet.webp) no-repeat 0 0;
@@ -76,14 +112,29 @@ section {
     position: absolute;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
+header nav > div:nth-child(2) > div {
+    height: 100%;
+    border-right: 1px solid #b8b8b8;
+    width: 35px;
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+    margin-right: 15px;
 }
 
-header nav {
-    /* align to the left */
+header nav > div:nth-child(2) > div > span {
+    scale: .3;
+    opacity:.7;
+    margin: 12px 0 0 15px;
+    width: 64px;
+    height: 64px;
+    background: url(/spritesheet.webp) no-repeat 0 -256px;
+    transform-origin: top left;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
+
 
 header > div {
     /* align to the right */
@@ -189,9 +240,9 @@ caption {
     caption-side: bottom;
     text-align: center;
     margin: 20px;
-    font-size: 12px;
+    font-size: 14px;
     background: #f2f2f2;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     cursor: pointer;
     user-select:none;
@@ -207,6 +258,10 @@ caption:hover {
 
 caption:active {
     background: #eeeeee;
+}
+caption div {
+    padding: 0 10px;
+    display: inline-block;
 }
 
 caption span {
