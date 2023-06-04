@@ -143,16 +143,13 @@ header > div > div {
     height: 40px;
     display: inline-block;
     border-radius: 5px;
-
     border: 1px solid #b8b8b8;
     box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
-    background: linear-gradient(to top, #f4f4f4, #fff);
     user-select: none;
     vertical-align: top;
     margin-right: 5px;
     cursor:pointer;
 }
-
 
 header > div > div:first-child > span {
     scale: .3;
