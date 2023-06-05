@@ -53,7 +53,7 @@ html {
 }
 
 section {
-    padding: 40px;
+    padding: 20px 40px;
     width: calc(100% - 350px);
 }
 
@@ -69,15 +69,14 @@ section {
 header {
     display: flex;
     justify-content: space-between;
-    margin: 0 0 25px 0;
+    margin: 5px 0 15px 0;
 }
 
 header nav > div {
     border: 1px solid #b8b8b8;
     box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
-    border-radius: 5px;
+    border-radius: 10px;
     background: linear-gradient(to top, #f4f4f4, #fff);
-    padding: 0 15px;
     height: 35px;
     user-select: none;
     width: auto;
@@ -86,10 +85,6 @@ header nav > div {
     margin-right: 5px;
     cursor:pointer;
     font-size: 14px;
-}
-
-header nav > div:nth-child(2) {
-    display: inline-block;
     font-weight: bold;
     max-width: 350px;
     overflow: hidden;
@@ -97,6 +92,7 @@ header nav > div:nth-child(2) {
     white-space: nowrap;
     position: relative;
     line-height: 35px;
+    padding: 0 15px;
 }
 
 header nav > div:first-of-type {
@@ -126,7 +122,7 @@ header nav > div:nth-child(2) > div {
 
 header nav > div:nth-child(2) > div > span {
     scale: .29;
-    opacity: 1;
+    opacity: .7;
     margin: 9px 0 0 11px;
     width: 64px;
     height: 64px;
@@ -143,12 +139,13 @@ header > div > div {
     width: 35px;
     height: 35px;
     display: inline-block;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #b8b8b8;
+    background: linear-gradient(to top, #f4f4f4, #fff);
     box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
     user-select: none;
     vertical-align: top;
-    margin-right: 5px;
+    margin-left: 5px;
     cursor:pointer;
 }
 
@@ -167,6 +164,11 @@ header > div > div > span {
 
 header > div > div:last-child > span {
     background-position:  0 -320px;
+}
+
+header > div > div:hover, header nav > div:hover {
+    border: 1px solid #3478F6;
+    background: linear-gradient(to top, #e7e9ef, #f0f3f8);
 }
 
 
