@@ -218,8 +218,8 @@ var handleSearchInput = (function() {
 function file_dir_manifest() {
     check_if_tbody_is_empty()
     GLOBAL_TABLE_DATA = extractTableData();
-    document.querySelector('header input').addEventListener('input', handleSearchInput);
-
+    //document.querySelector('header input').addEventListener('input', handleSearchInput);
+    document.getElementById("fc").innerText = `${GLOBAL_TABLE_DATA.length} files`;
 }
 
 document.addEventListener('DOMContentLoaded', file_dir_manifest);
