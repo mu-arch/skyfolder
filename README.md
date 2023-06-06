@@ -14,7 +14,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 
 ### Screenshot:
 
-![Screenshot](https://github.com/mu-arch/skyfolder/raw/master/Screenshot%202023-05-24%20at%207.36.56%20PM.webp)
+![Screenshot](Screenshot%202023-06-06%20at%201.19.18%20AM.png)
 
 ### Priorities:
 1. Secure
