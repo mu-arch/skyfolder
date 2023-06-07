@@ -28,7 +28,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 3. Sort the list by multiple parameters.
 4. Access Control Lists (ACL) for managing permissions on a per folder/user basis.
 5. Portable - requires no installation or management of program files; everything is packaged in a single executable file.
-6. No third party services. Runs completely on your PC or server.
+6. No third party services or data collection. Runs completely on your PC or server.
 7. Multiple views: list view, icon view.
 8. In-browser file-viewer and streamer.
 9. Built in real-time search engine with fuzzy finding.
@@ -36,14 +36,15 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 11. Compatible with GNU/Linux, BSD, Windows, and Mac.
 12. Supports TLS certificates, including a built-in automatic Let's Encrypt client that can renew certs with no user interaction.
 13. Stable enough to run for years without needing a restart.
-14. No telemetry - Skyfolder doesn't initiate outgoing connections.
-15. Secure to expose to the open internet.
-16. Management GUI that generates [Gura](https://github.com/gura-conf/gura) markup in the background (manual Gura editing is also an option).
-17. Multiple download methods: HTTP GET, HTTP JS managed File System Access API, Bittorrent magnet.
-18. Efficiently utilizes all CPU cores and available bandwidth, capable of serving files at gigabit speeds to hundreds of active downloaders.
-19. Supports partial files (content-range) and retries.
-20. Generates thumbnails for images and videos.
-21. Supports directories with tens of thousands of files.
+14. Secure to expose to the open internet.
+15. Management GUI that generates [Gura](https://github.com/gura-conf/gura) markup in the background (manual Gura editing is also an option).
+16. Multiple download methods: HTTP GET, HTTP JS managed File System Access API, Bittorrent magnet.
+17. Efficiently utilizes all CPU cores and available bandwidth, capable of serving files at gigabit speeds to hundreds of active downloaders.
+18. Supports partial files (content-range) and retries.
+19. Generates thumbnails for images and videos.
+20. Supports directories with tens of thousands of files.
+21. Produces the correct headers for streaming video in VRChat movie theater worlds ;)
+22. Automatic port opening with UPnP
 
 ### Roadmap
 
