@@ -44,7 +44,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 19. Generates thumbnails for images and videos.
 20. Supports directories with tens of thousands of files.
 21. Produces the correct headers for streaming video to VRChat movie theater worlds ;)
-22. Supports automatic port opening with UPnP
+22. Supports automatic port mapping with UPnP
 23. QR code generation
 
 ### Roadmap
