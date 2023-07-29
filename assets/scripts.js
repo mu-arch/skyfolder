@@ -214,12 +214,16 @@ var handleSearchInput = (function() {
 }
 */
 
+
+
+
 //manifests run at pageload
 function file_dir_manifest() {
     check_if_tbody_is_empty()
     GLOBAL_TABLE_DATA = extractTableData();
     //document.querySelector('header input').addEventListener('input', handleSearchInput);
     document.getElementById("fc").innerText = `${GLOBAL_TABLE_DATA.length} files`;
+    //document.getElementById("fsz").innerText = ;
 }
 
 document.addEventListener('DOMContentLoaded', file_dir_manifest);

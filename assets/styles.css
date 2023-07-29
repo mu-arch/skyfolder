@@ -278,7 +278,7 @@ tbody tr::after {
     width: 64px;  /* width of your icon */
     height: 64px;  /* height of your icon */
     position: absolute;
-    right: -5px;  /* Adjust this value to position your icon on the right */
+    right: -15px;  /* Adjust this value to position your icon on the right */
     top: -2px;
 }
 
@@ -397,7 +397,7 @@ caption span {
 #pane p {
     padding: 20px 10px;
     font-size: 12px;
-    color: #7c7a7a;
+    color: #4d4d4d;
     line-height: 15px;
 }
 
@@ -405,6 +405,17 @@ caption span {
     font-size: 10px;
     color: #7c7a7a;
     padding: 8px 0;
+}
+
+#pane > div > div:last-child span {
+    padding: 2px 4px;
+    background-color: #f2f1f0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 10px;
+    border-radius: 2px;
+    position: relative;
+    top: -1px;
 }
 
 #pane > div > div:last-child > span {

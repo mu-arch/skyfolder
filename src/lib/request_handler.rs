@@ -12,7 +12,7 @@ use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
 use std::ffi::OsStr;
 use std::time::{SystemTime, UNIX_EPOCH};
 use bytes::Bytes;
-use crate::lib::fs_interaction;
+use crate::lib::{fs_interaction, helper};
 use crate::VERSION;
 
 pub enum ResponseWrapper {
@@ -88,6 +88,7 @@ pub struct DirectoryTemplate<'a> {
     relative_path: &'a str,
     entries: &'a [DirEntry],
     current_location_name: &'a str,
+    current_location_size: String,
 }
 
 pub async fn build_template(title_name: &Option<String>, entries: &[DirEntry], relative_path: &std::path::Path) -> Result<String, AppErrorExternal> {
@@ -98,11 +99,22 @@ pub async fn build_template(title_name: &Option<String>, entries: &[DirEntry], r
 
     let relative_path_str = relative_path.to_str().unwrap_or_else(|| "");
 
+    let mut size_sum = 0;
+    for entry in entries {
+        size_sum += entry.size.unwrap_or_else(|| 0);
+    }
+
+    let size_string = match helper::format_file_size_pretty(Some(size_sum)) {
+        None => "Sizeless".to_string(),
+        Some(v) => v
+    };
+
     let template = DirectoryTemplate {
         title,
         relative_path: relative_path_str,
         entries,
         current_location_name,
+        current_location_size: size_string,
     };
 
     Ok(template.render()?)
@@ -157,31 +169,9 @@ impl DirEntry {
 
 
     pub fn format_file_size(&self) -> String {
-        let units = vec!["b", "kb", "mb", "gb", "tb"];
-        let kib = 1024.0;
-
-        let bytes = match self.size {
-            Some(b) => b as f64,
-            None => return "-".to_string(),
-        };
-
-        if bytes == 0.0 || bytes.is_nan() {
-            return "-".to_string();
-        }
-
-        let base = f64::log(bytes, kib).floor() as usize;
-        if base >= units.len() {
-            return "Too Large".to_string();
-        }
-
-        let adjusted_bytes = bytes / f64::powi(kib, base as i32);
-        let unit = &units[base];
-
-        if f64::round(adjusted_bytes.fract() * 10.0) == 0.0 {
-            return format!("{} <span>{}</span>", adjusted_bytes.floor(), unit);
-        } else {
-            let formatted_adjusted_bytes = format!("{:.1}", adjusted_bytes);
-            return format!("{} <span>{}</span>", formatted_adjusted_bytes.trim_end_matches(".0"), unit);
+        match helper::format_file_size_pretty(self.size) {
+            Some(b) => b,
+            None => "-".to_string(),
         }
     }
 
