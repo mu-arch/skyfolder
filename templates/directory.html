@@ -72,12 +72,13 @@
 </section>
 
 <div id="pane">
+    <span>{{ current_location_name }}/</span>
     <div>
-        <div><h1>{{ current_location_name }}/</h1><span>Dir</span></div>
+        <div><h1>Information</h1><span>Dir</span></div>
         <div>
-            <p>This folder doesn't have a description yet.</p>
+            <p>This folder doesn't have a description yet. An admin can set one.</p>
         </div>
-        <div><span id="fc"></span>-<span id="fsz">{{ current_location_size|safe }}</span></div>
+        <div><span id="fc"></span>|<span id="fsz">{{ current_location_size|safe }}</span></div>
     </div>
 </div>
 

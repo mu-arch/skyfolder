@@ -351,10 +351,17 @@ caption span {
     width: 270px;
 }
 
+#pane > span {
+    margin: 35px 15px;
+    display: block;
+    font-size: 15px;
+    color: #333;
+}
+
 #pane > div {
     background-color: #e8e7e6;
     width: 90%;
-    margin: 25px auto 0 auto;
+    margin: 5px auto 0 auto;
     overflow: hidden;
     border-radius: 8px;
 }
@@ -367,6 +374,8 @@ caption span {
 
 #pane > div > div:first-child > * {
     display: inline-block;
+    font-weight: 500;
+    color: #404040;
 }
 
 #pane h1 {
@@ -383,15 +392,15 @@ caption span {
 }
 
 #pane > div > div:first-child > *:last-child {
-    padding: 2px 6px;
-    background-color: #fff;
-    color: #000;
+    padding: 3px 6px;
+    background-color: rgba(0, 0, 0, 0.24);
+    color: #fff;
     letter-spacing: 1px;
     border-radius: 5px;
     margin: 5px 10px;
     float: right;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
 }
 
@@ -404,7 +413,7 @@ caption span {
 
 #pane > div > div:last-child {
     font-size: 10px;
-    color: #7c7a7a;
+    color: #6a6a6a;
     padding: 8px 0;
 }
 
