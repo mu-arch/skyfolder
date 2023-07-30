@@ -384,14 +384,15 @@ caption span {
 
 #pane > div > div:first-child > *:last-child {
     padding: 2px 6px;
-    background-color: #a9a7a2;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     letter-spacing: 1px;
     border-radius: 5px;
     margin: 5px 10px;
     float: right;
     text-transform: uppercase;
     font-size: 12px;
+    font-weight: 600;
 }
 
 #pane p {
@@ -407,15 +408,16 @@ caption span {
     padding: 8px 0;
 }
 
-#pane > div > div:last-child span {
+#pane > div > div:last-child span span {
     padding: 2px 4px;
-    background-color: #f2f1f0;
+    background-color: #cacaca;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 8px;
     border-radius: 2px;
     position: relative;
     top: -1px;
+    color: #626262;
 }
 
 #pane > div > div:last-child > span {
