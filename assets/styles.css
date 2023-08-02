@@ -42,6 +42,10 @@ table {
     border-spacing: 0;
 }
 
+input:focus {
+    outline: none;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -176,13 +180,17 @@ header > div > div:hover, header nav > div:hover {
     width: calc(100% - 116px);
     height: 33px;
     position: absolute;
-    background: linear-gradient(to top, #f4f4f4, #fff);
-    border: 1px solid #b8b8b8;
+    border: 1px solid #3478F6;
+    background: linear-gradient(to top, #e7e9ef, #f0f3f8);
     box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
     border-radius: 10px;
     right: 0;
     padding-left: 50px;
+    font-weight: bold;
+
 }
+
+
 
 
 table {
