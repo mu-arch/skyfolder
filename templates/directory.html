@@ -15,29 +15,11 @@
 
 <body>
 <section>
-    <header>
-        <nav>
-            <div title="Return to Filesystem Root" aria-path="{{ relative_path }}">
-                <span></span>
-                <div><span></span></div>
-            </div>
-            <div title="{{ current_location_name }}">
-                <div>
-                    <span></span>
-                </div>
-                {{ current_location_name }}/
-            </div>
-        </nav>
-        <div>
-            <div>
-                <span></span>
-            </div>
-            <div>
-            <span></span>
-        </div>
-        </div>
-        <input id="searchbar" placeholder="Quick filter folder...">
-    </header>
+    <nav>
+        <div title="Return to Filesystem Root" aria-path="{{ relative_path }}"></div>
+        <div title="{{ current_location_name }}">{{ current_location_name }}/</div>
+        <div><input placeholder="Quick search folder..."></div>
+    </nav>
 
 
 
@@ -73,7 +55,6 @@
 </section>
 
 <div id="pane">
-    <span>{{ current_location_name }}/</span>
     <div>
         <div><h1>Information</h1><span>Dir</span></div>
         <div>

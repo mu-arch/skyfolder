@@ -61,53 +61,42 @@ section {
     width: calc(100% - 350px);
 }
 
-.triangle {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 50px 100px 0 100px;
-    border-color: transparent transparent transparent black;
-}
-
-
-header {
+nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 5px 0 15px 0;
-    position: relative;
 }
 
-header nav > div {
+nav > * {
     border: 1px solid #b8b8b8;
     box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
     border-radius: 10px;
     background: linear-gradient(to top, #f4f4f4, #fff);
     height: 35px;
     user-select: none;
-    width: auto;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 5px;
+    margin-right: 10px;
     cursor:pointer;
     font-size: 14px;
     font-weight: bold;
-    max-width: 350px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    position: relative;
     line-height: 35px;
     padding: 0 15px;
+    position: relative;
 }
 
-header nav > div:first-of-type {
-    width: 51px;
+nav > *:hover {
+    border: 1px solid #3478F6;
+    background: linear-gradient(to top, #e7e9ef, #f0f3f8);
+}
+
+nav > div:first-of-type {
+    min-width: 51px;
     padding: 0;
 }
 
-header nav div span {
+nav > div:first-of-type:before {
+    content: '';
     scale: .2;
-    margin: 4px 0 0 12px;
+    margin: 5px 0 0 12px;
     width: 128px;
     height: 128px;
     background: url(/spritesheet.webp) no-repeat 0 0;
@@ -115,18 +104,17 @@ header nav div span {
     position: absolute;
 }
 
-header nav > div:nth-child(2) > div {
-    height: 100%;
-    border-right: 1px solid #b8b8b8;
-    width: 25px;
-    display: inline-block;
-    float: left;
-    vertical-align: top;
-    margin-right: 15px;
+nav > div:nth-child(2) {
+    padding-left: 58px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-header nav > div:nth-child(2) > div > span {
-    scale: .29;
+nav > div:nth-child(2):before {
+    content: '';
+    scale: .26;
     opacity: .7;
     margin: 9px 0 0 11px;
     width: 64px;
@@ -134,62 +122,67 @@ header nav > div:nth-child(2) > div > span {
     background: url(/spritesheet.webp) no-repeat 0 -256px;
     transform-origin: top left;
     position: absolute;
-    left: 0;
+    left: 2px;
+    top: 1px;
+}
+
+nav > div:nth-child(2):after {
+    content: '';
+    position: absolute;
+    left: 42px;
     top: 0;
+    height: 100%;
+    border-right: 1px solid #b8b8b8;
 }
 
-
-header > div > div {
-    position: relative;
-    width: 35px;
-    height: 35px;
-    display: inline-block;
-    border-radius: 10px;
-    border: 1px solid #b8b8b8;
-    background: linear-gradient(to top, #f4f4f4, #fff);
-    box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
-    user-select: none;
-    vertical-align: top;
-    margin-left: 5px;
-    cursor:pointer;
+nav > div:nth-child(3) {
+    flex: 1;
+    margin-right: 0;
+    padding: 0;
+    border: 1px solid #3478F6;
+    background: linear-gradient(to top, #e7e9ef, #f0f3f8);
 }
 
-header > div > div > span {
-    scale: .25;
+nav > div:nth-child(3):before {
+    content: '';
+    scale: .26;
     opacity: .7;
-    margin: 11px 0 0 14px;
+    margin: 9px 0 0 11px;
     width: 64px;
     height: 64px;
     background: url(/spritesheet.webp) no-repeat -128px -256px;
     transform-origin: top left;
     position: absolute;
-    left: -4px;
-    top: -1px;
+    left: 2px;
+    top: 1px;
 }
 
-header > div > div:last-child > span {
-    background-position:  0 -320px;
-}
-
-header > div > div:hover, header nav > div:hover {
-    border: 1px solid #3478F6;
-    background: linear-gradient(to top, #e7e9ef, #f0f3f8);
-}
-
-#searchbar {
-    width: calc(100% - 116px);
-    height: 33px;
+nav > div:nth-child(3):after {
+    content: '';
+    scale: .26;
+    opacity: .7;
+    margin: 9px 0 0 11px;
+    width: 64px;
+    height: 64px;
+    background: url(/spritesheet.webp) no-repeat -64px -320px;
+    transform-origin: top left;
     position: absolute;
-    border: 1px solid #3478F6;
-    background: linear-gradient(to top, #e7e9ef, #f0f3f8);
-    box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
-    border-radius: 10px;
-    right: 0;
-    padding-left: 50px;
-    font-weight: bold;
-
+    right: -35px;
+    top: 1px;
 }
 
+nav input {
+    width: 100%;
+    background: none;
+    border: none;
+    font-weight: bold;
+    height: 100%;
+    padding-left: 43px;
+}
+
+nav > div:nth-child(3):hover {
+    cursor: text;
+}
 
 
 
@@ -367,29 +360,21 @@ caption span {
     top: 0;
     right: 0;
     min-height: 100vh;
-    background-color: #f2f1f0;
     width: 270px;
 }
 
-#pane > span {
-    margin: 35px 15px;
-    display: block;
-    font-size: 15px;
-    color: #333;
-}
-
 #pane > div {
+    margin: 25px 0;
     background-color: #e8e7e6;
     width: 90%;
-    margin: 5px auto 0 auto;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 #pane > div > div:first-child {
-    height: 25px;
-    background-color: #d7d4d1;
-    border-bottom: 1px solid #cac7c2;
+    height: 37px;
+    background-color: #dbdbdb;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 #pane > div > div:first-child > * {
