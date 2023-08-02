@@ -157,18 +157,38 @@ nav > div:nth-child(3):before {
     top: 1px;
 }
 
-nav > div:nth-child(3):after {
+nav > div:nth-child(3) > div {
+    height: 17px;
+    width: 35px;
+    background-color: #0049ff;
+    position: absolute;
+    right: 13px;
+    top: 9px;
+    border-radius: 5px;
+}
+
+nav > div:nth-child(3) > div:before {
     content: '';
-    scale: .26;
-    opacity: .7;
-    margin: 9px 0 0 11px;
+    scale: .16;
+    filter: invert();
     width: 64px;
     height: 64px;
     background: url(/spritesheet.webp) no-repeat -64px -320px;
-    transform-origin: top left;
     position: absolute;
-    right: -35px;
-    top: 1px;
+    left: -20px;
+    top: -23px;
+}
+
+nav > div:nth-child(3) > div:after {
+    content: '';
+    scale: .1;
+    filter: invert();
+    width: 64px;
+    height: 64px;
+    background: url(/spritesheet.webp) no-repeat -64px -256px;
+    position: absolute;
+    left: -7px;
+    top: -23px;
 }
 
 nav input {
@@ -365,15 +385,16 @@ caption span {
 
 #pane > div {
     margin: 25px 0;
-    background-color: #e8e7e6;
+    background-color: #f9f9f9;
     width: 90%;
     overflow: hidden;
     border-radius: 10px;
+    border: 1px solid #b8b8b8;
 }
 
 #pane > div > div:first-child {
     height: 37px;
-    background-color: #dbdbdb;
+    background: linear-gradient(to top, #f4f4f4, #fff);
     border-bottom: 1px solid #c4c4c4;
 }
 
@@ -384,7 +405,7 @@ caption span {
 }
 
 #pane h1 {
-    padding: 6px 10px;
+    padding: 11px;
     font-size: 14px;
     width: 165px;
     text-overflow: ellipsis;
@@ -397,12 +418,12 @@ caption span {
 }
 
 #pane > div > div:first-child > *:last-child {
-    padding: 3px 6px;
+    padding: 6px;
     background-color: rgba(0, 0, 0, 0.24);
     color: #fff;
     letter-spacing: 1px;
     border-radius: 5px;
-    margin: 5px 10px;
+    margin: 7px 10px;
     float: right;
     text-transform: uppercase;
     font-size: 10px;
@@ -424,7 +445,7 @@ caption span {
 
 #pane > div > div:last-child span span {
     padding: 2px 4px;
-    background-color: #cacaca;
+    background-color: #ddd;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 8px;
