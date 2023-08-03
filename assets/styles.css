@@ -139,8 +139,6 @@ nav > div:nth-child(3) {
     flex: 1;
     margin-right: 0;
     padding: 0;
-    border: 1px solid #3478F6;
-    background: linear-gradient(to top, #e7e9ef, #f0f3f8);
 }
 
 nav > div:nth-child(3):before {
@@ -385,7 +383,7 @@ caption span {
 
 #pane > div {
     margin: 25px 0;
-    background-color: #f9f9f9;
+    background-color: #fbfbfb;
     width: 90%;
     overflow: hidden;
     border-radius: 10px;
