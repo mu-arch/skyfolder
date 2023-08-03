@@ -66,7 +66,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 
 ### How to install:
 
-Coming next week.
+I will add this soon as I'm adding some OS specific features for each build related to GUI for starting and stopping the program.
 
 ## Security notice
 
