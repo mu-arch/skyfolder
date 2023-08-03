@@ -14,7 +14,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 
 ### Screenshot:
 
-![Screenshot](Screenshot%202023-06-06%20at%201.19.18%20AM.png)
+![Screenshot](Screenshot%202023-08-02%20at%2010.39.59%20PM.png)
 
 ### Priorities:
 1. Secure
