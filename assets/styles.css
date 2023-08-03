@@ -158,26 +158,23 @@ nav > div:nth-child(3):before {
 nav > div:nth-child(3) > div {
     height: 17px;
     width: 35px;
-    background-color: #0049ff;
+    background-color: #356eff;
     position: absolute;
+    border-radius: 5px;
     right: 13px;
     top: 9px;
-    border-radius: 5px;
 }
 
-nav > div:nth-child(3) > div:before {
-    content: '';
-    scale: .16;
-    filter: invert();
-    width: 64px;
-    height: 64px;
-    background: url(/spritesheet.webp) no-repeat -64px -320px;
+nav > div:nth-child(3) > div:nth-child(2):before {
+    content: 'ADV';
+    color: #fff;
     position: absolute;
-    left: -20px;
-    top: -23px;
+    left: 7px;
+    top: -9px;
+    font-size: 6px;
 }
 
-nav > div:nth-child(3) > div:after {
+nav > div:nth-child(3) > div:nth-child(2):after {
     content: '';
     scale: .1;
     filter: invert();
@@ -185,8 +182,9 @@ nav > div:nth-child(3) > div:after {
     height: 64px;
     background: url(/spritesheet.webp) no-repeat -64px -256px;
     position: absolute;
-    left: -7px;
+    left: -5px;
     top: -23px;
+    rotate: 270deg;
 }
 
 nav input {
@@ -457,6 +455,18 @@ caption span {
     padding: 0 10px;
 }
 
+#qr:after {
+    content: '';
+    scale: .2;
+    opacity: .7;
+    width: 64px;
+    height: 64px;
+    background: url(/spritesheet.webp) no-repeat -196px -256px;
+    position: absolute;
+    left: 125px;
+    top: 101px;
+}
+
 footer {
     display:none;
     padding: 50px 0 10px 0;
@@ -467,4 +477,21 @@ footer {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+ul {
+    border-top: 1px solid #c5c5c5;
+    margin: 60px 25px 0 0;
+    padding: 20px 0 0 0;
+    color: #4d4d4d;
+}
+
+ul li {
+    padding: 6px 0;
+}
+
+ul li:after {
+    content: '\xE2\x86\x92';
+    margin-left: 10px;
+    display: inline-block;
 }
