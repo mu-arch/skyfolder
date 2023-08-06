@@ -114,22 +114,23 @@ nav > div:nth-child(2) {
 
 nav > div:nth-child(2):before {
     content: '';
-    scale: .26;
+    scale: .2;
     opacity: .7;
-    margin: 9px 0 0 11px;
+    margin: 11px 0 0 23px;
     width: 64px;
     height: 64px;
-    background: url(/spritesheet.webp) no-repeat 0 -256px;
+    background: url(/spritesheet.webp) no-repeat -64px -254px;
     transform-origin: top left;
     position: absolute;
     left: 2px;
     top: 1px;
+    rotate: 90deg;
 }
 
 nav > div:nth-child(2):after {
     content: '';
     position: absolute;
-    left: 42px;
+    left: 37px;
     top: 0;
     height: 100%;
     border-right: 1px solid #b8b8b8;
