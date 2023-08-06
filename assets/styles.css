@@ -105,7 +105,7 @@ nav > div:first-of-type:before {
 }
 
 nav > div:nth-child(2) {
-    padding-left: 58px;
+    padding-left: 74px;
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -114,23 +114,34 @@ nav > div:nth-child(2) {
 
 nav > div:nth-child(2):before {
     content: '';
-    scale: .2;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right: 7px solid #575757;
+    position: absolute;
+    top: 11px;
+    left: 15px;
+}
+
+nav > div:nth-child(2) span {
+    content: '';
+    scale: .22;
     opacity: .7;
-    margin: 11px 0 0 23px;
+    margin: 9px 0 0 11px;
     width: 64px;
     height: 64px;
-    background: url(/spritesheet.webp) no-repeat -64px -254px;
+    background: url(/spritesheet.webp) no-repeat 0px -256px;
     transform-origin: top left;
     position: absolute;
-    left: 2px;
-    top: 1px;
-    rotate: 90deg;
+    left: 41px;
+    top: 2px;
 }
 
 nav > div:nth-child(2):after {
     content: '';
     position: absolute;
-    left: 37px;
+    left: 38px;
     top: 0;
     height: 100%;
     border-right: 1px solid #b8b8b8;
