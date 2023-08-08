@@ -133,6 +133,7 @@ nav > div:nth-child(3) {
     border-left: 1px solid transparent;
     position: relative;
     left:-1px;
+    margin-right: 9px;
 }
 nav > div:nth-child(3):hover {
     z-index: 1000;
