@@ -137,10 +137,7 @@ nav > div:nth-child(3) {
 }
 nav > div:nth-child(3):hover {
     z-index: 1000;
-}
-
-nav > div:nth-child(3):hover {
-    border-left: 1px solid #3478F6;;
+    border-left: 1px solid #3478F6;
 }
 
 nav > div:nth-child(3):before {
@@ -216,10 +213,6 @@ nav input {
     font-weight: bold;
     height: 100%;
     padding-left: 43px;
-}
-
-nav > div:nth-child(3):hover {
-    cursor: text;
 }
 
 

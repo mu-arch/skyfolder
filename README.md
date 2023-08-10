@@ -6,7 +6,7 @@
 
 **It's like your own personal Google Drive!**
 
-Skyfolder is a secure, self-contained, portable, HTTP/Bittorrent server that hosts a website for immediate file-sharing with friends, colleagues, or just yourself. Made for busy people that want to share files NOW, and don't want to remember how to configure anything. Ships with good defaults and includes a built-in management graphical interface.
+Skyfolder is a secure, self-contained, portable, HTTP/Bittorrent server that serves a local folder on your computer as a website for immediate file-sharing with friends, colleagues, or just yourself. Made for busy people that want to share files NOW, and don't want to remember how to configure anything, auto-negotiates with your router to automate port-forwarding. Ships with good defaults and includes a built-in management graphical interface.
 
 No need to install anything. SkyFolder is a single portable executable file.
 
@@ -22,7 +22,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 3. Stylish
 
 ### Features:
-
+Software Engineering contracting — 2018 - NOW
 1. Downloads & uploads (Both pausable/resumable).
 2. Create, Delete, Rename directories.
 3. Sort the list by multiple parameters.
