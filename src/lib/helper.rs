@@ -1,3 +1,5 @@
+use reqwest;
+
 pub fn format_file_size_pretty(size: Option<u64>) -> Option<String> {
     let units = vec!["b", "kb", "mb", "gb", "tb"];
     let kib = 1024.0;
@@ -25,4 +27,18 @@ pub fn format_file_size_pretty(size: Option<u64>) -> Option<String> {
         let formatted_adjusted_bytes = format!("{:.1}", adjusted_bytes);
         return Some(format!("{} <span>{}</span>", formatted_adjusted_bytes.trim_end_matches(".0"), unit));
     }
+}
+
+pub async fn get_public_ip() -> Result<String, reqwest::Error> {
+    let url = "https://www.cloudflare.com/cdn-cgi/trace";
+    let resp = reqwest::get(url).await?.text().await?;
+
+    let ip = resp
+        .lines()
+        .find(|line| line.starts_with("ip="))
+        .map(|line| &line[3..])
+        .unwrap_or("")
+        .to_string();
+
+    Ok(ip)
 }

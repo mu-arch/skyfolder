@@ -7,11 +7,10 @@ static GLOBAL: Jemalloc = Jemalloc;
 
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
-use crate::lib::{fs_interaction, parse_cli_args, request_handler};
+use crate::lib::{fs_interaction, helper, parse_cli_args, request_handler};
 use crate::lib::errors::AppErrorInternal;
 use axum::routing::get;
 use axum::{Extension, Server};
-
 
 mod lib {
     pub(crate) mod errors;
@@ -61,7 +60,7 @@ async fn init() -> Result<(), AppErrorInternal> {
     println!("Bound to [::]:{}, 0.0.0.0:{}", app_state.port, app_state.port);
     let ifaces = get_if_addrs::get_if_addrs().unwrap();
 
-    println!("Available at (non-exhaustive list):");
+    println!("Available on LAN at (non-exhaustive list):");
 
     for iface in ifaces {
         match iface.addr {
@@ -73,6 +72,10 @@ async fn init() -> Result<(), AppErrorInternal> {
             }
         }
     }
+
+    //todo only show this if the user has upnp mode enabled. remember to set port to whatever upnp negotiates
+    println!("Available on WAN (Public internet) at:");
+    println!("    http://{}:30080", helper::get_public_ip().await.unwrap_or("Failed to determine IP".to_string()));
 
 
     let app = axum::Router::new()
