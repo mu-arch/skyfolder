@@ -230,19 +230,31 @@ impl FormatPath for &str {
 
 
 // embedding this data in the binary allows it to work without external files
-static SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/spritesheet.webp"));
+static RASTER_SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/raster_spritesheet.webp"));
+static VECTOR_SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/vector_spritesheet.webp"));
+
 
 //static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));
 static FAVICON: Bytes = Bytes::from_static(include_bytes!("../../assets/favicon.ico"));
 
 //serving these files with Axum rather than dynamically templated in with Askama results in better performance and memory usage
-pub async fn serve_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> {
+pub async fn serve_raster_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> {
     Ok(
         Response::builder()
             .status(StatusCode::OK)
             .header(hyper::header::CONTENT_TYPE, "image/webp")
             .header("Cache-Control", "public, max-age=7884000")
-            .body(Body::from(&*SPRITESHEET))?
+            .body(Body::from(&*RASTER_SPRITESHEET))?
+    )
+}
+
+pub async fn serve_vector_spritesheet() -> Result<impl IntoResponse, AppErrorExternal> {
+    Ok(
+        Response::builder()
+            .status(StatusCode::OK)
+            .header(hyper::header::CONTENT_TYPE, "image/webp")
+            .header("Cache-Control", "public, max-age=7884000")
+            .body(Body::from(&*RASTER_SPRITESHEET))?
     )
 }
 

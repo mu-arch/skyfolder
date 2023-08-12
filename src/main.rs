@@ -83,7 +83,7 @@ async fn init() -> Result<(), AppErrorInternal> {
         .route("/*path", get(request_handler::handle_path))
         .route("/about_skyfolder", get(request_handler::build_about))
         .layer(Extension(app_state.clone()))
-        .route(SPRITES_FILENAME, get(request_handler::serve_spritesheet))
+        .route(SPRITES_FILENAME, get(request_handler::serve_raster_spritesheet))
         .route(CSS_FILENAME, get(request_handler::serve_css))
         .route(JS_FILENAME, get(request_handler::serve_js))
         .route("/favicon.ico", get(request_handler::serve_favicon));
