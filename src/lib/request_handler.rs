@@ -230,8 +230,8 @@ impl FormatPath for &str {
 
 
 // embedding this data in the binary allows it to work without external files
-static RASTER_SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/raster_spritesheet.webp"));
-static VECTOR_SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/vector_spritesheet.webp"));
+static RASTER_SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/r.webp"));
+static VECTOR_SPRITESHEET: Bytes = Bytes::from_static(include_bytes!("../../assets/v.svg"));
 
 
 //static SCRIPTS: Bytes = Bytes::from_static(include_bytes!("../../assets/scripts.js"));
@@ -252,9 +252,9 @@ pub async fn serve_vector_spritesheet() -> Result<impl IntoResponse, AppErrorExt
     Ok(
         Response::builder()
             .status(StatusCode::OK)
-            .header(hyper::header::CONTENT_TYPE, "image/webp")
+            .header(hyper::header::CONTENT_TYPE, "image/svg+xml")
             .header("Cache-Control", "public, max-age=7884000")
-            .body(Body::from(&*RASTER_SPRITESHEET))?
+            .body(Body::from(&*VECTOR_SPRITESHEET))?
     )
 }
 

@@ -12,14 +12,17 @@ fn main() {
 
     let build_id = generate_random_string(15);
 
-    let sprites_filename = format!("/sprites{}.webp", build_id);
+    let raster_sprites_filename = format!("/r{}.webp", build_id);
+    let vector_sprites_filename = format!("/v{}.svg", build_id);
 
     let mut out = String::new();
 
     let css_file = fs::read_to_string("assets/styles.css").unwrap();
-    let css_file = css_file.replace("/spritesheet.webp", &sprites_filename);
+    let css_file = css_file.replace("/r.webp", &raster_sprites_filename);
+    let css_file = css_file.replace("/v.svg", &vector_sprites_filename);
 
-    write!(out, "pub const SPRITES_FILENAME: &str = \"{sprites_filename}\";").unwrap();
+    write!(out, "pub const RASTER_SPRITES_FILENAME: &str = \"{raster_sprites_filename}\";").unwrap();
+    write!(out, "pub const VECTOR_SPRITES_FILENAME: &str = \"{vector_sprites_filename}\";").unwrap();
     write!(out, "pub const JS_FILENAME: &str = \"/js{}.js\";", build_id).unwrap();
     write!(out, "pub const CSS_FILENAME: &str = \"/css{}.css\";", build_id).unwrap();
 
