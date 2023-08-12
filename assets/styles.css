@@ -81,6 +81,7 @@ nav > * {
     line-height: 35px;
     padding: 0 15px;
     position: relative;
+    overflow: hidden;
 }
 
 nav > *:hover {
@@ -209,9 +210,12 @@ nav input {
     background: none;
     border: none;
     font-weight: bold;
-    height: 100%;
+    height: 35px;
     padding-left: 43px;
+    font-size: 12px;
+    font-family: monospace, Arial;
 }
+
 
 
 
