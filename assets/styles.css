@@ -317,8 +317,8 @@ td:nth-child(1) div {
 
 tbody tr::after {
     content: '';
-    background: url('/r.webp') -128px -320px;
-    scale:.225;
+    background: url('v.svg') 0px -64px;
+    scale: .23;
     opacity:.4;
     width: 64px;  /* width of your icon */
     height: 64px;  /* height of your icon */
