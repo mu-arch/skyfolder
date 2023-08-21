@@ -22,7 +22,7 @@ Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 3. Stylish
 
 ### Features:
-Software Engineering contracting — 2018 - NOW
+
 1. Downloads & uploads (Both pausable/resumable).
 2. Create, Delete, Rename directories.
 3. Sort the list by multiple parameters.

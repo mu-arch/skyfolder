@@ -317,7 +317,7 @@ td:nth-child(1) div {
 
 tbody tr::after {
     content: '';
-    background: url('v.svg') 0px -64px;
+    background: url('/v.svg') 0px -64px;
     scale: .23;
     opacity:.4;
     width: 64px;  /* width of your icon */
