@@ -8,7 +8,7 @@
 
 Skyfolder is a secure, self-contained, portable, HTTP/Bittorrent server that serves a local folder on your computer as a website and torrent for immediate file-sharing with friends, colleagues, or just yourself. Made for busy people that want to share files NOW, and don't want to remember how to configure anything. Auto-negotiates with your router to automate port-forwarding. Ships with good defaults and includes a built-in management graphical interface for permissions, etc.
 
-No need to install anything. SkyFolder is a single portable executable file. [Take me to the install link!](#how-to-install)
+No need to install anything. SkyFolder is a single portable executable file. [Take me to the download link!](#how-to-install)
 
 Skyfolder Discord: https://discord.gg/VBMe2rcYb6
 
