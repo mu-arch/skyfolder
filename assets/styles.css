@@ -395,7 +395,7 @@ caption span {
     width: 270px;
 }
 
-#pane > div {
+#pane > div:first-child {
     margin: 25px 0;
     background-color: #fbfbfb;
     width: 90%;
@@ -404,13 +404,13 @@ caption span {
     border: 1px solid #b8b8b8;
 }
 
-#pane > div > div:first-child {
+#pane > div:first-child > div:first-child {
     height: 37px;
     background: linear-gradient(to top, #f4f4f4, #fff);
     border-bottom: 1px solid #c4c4c4;
 }
 
-#pane > div > div:first-child > * {
+#pane > div:first-child > div:first-child > * {
     display: inline-block;
     font-weight: 500;
     color: #404040;
@@ -425,11 +425,11 @@ caption span {
     white-space: nowrap;
 }
 
-#pane > div > div:last-child {
+#pane > div:first-child > div:last-child {
     border-top: 1px solid #cac7c2;
 }
 
-#pane > div > div:first-child > *:last-child {
+#pane > div:first-child > div:first-child > *:last-child {
     padding: 6px;
     background-color: rgba(0, 0, 0, 0.24);
     color: #fff;
@@ -449,13 +449,13 @@ caption span {
     line-height: 15px;
 }
 
-#pane > div > div:last-child {
+#pane > div:first-child > div:last-child {
     font-size: 10px;
     color: #6a6a6a;
     padding: 8px 0;
 }
 
-#pane > div > div:last-child span span {
+#pane > div:first-child > div:last-child span span {
     padding: 2px 4px;
     background-color: #ddd;
     text-transform: uppercase;
@@ -467,7 +467,7 @@ caption span {
     color: #626262;
 }
 
-#pane > div > div:last-child > span {
+#pane > div:first-child > div:last-child > span {
     padding: 0 10px;
 }
 
@@ -497,4 +497,52 @@ footer {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+#pane .button-menu{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 0 25px 0 0 ;
+}
+
+#pane button {
+    border: 0;
+    padding: 45px 0 10px 0;
+    border-radius: 9px;
+    background-color: #fff;
+    text-transform: uppercase;
+    font-size: 9px;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+
+#pane button:hover {
+    background-color: #eeeeee;
+}
+
+#pane button::before {
+    content: '';
+    scale: .35;
+    opacity: 1;
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: auto;
+    position: absolute;
+    top: -9px;
+    left: 4px;
+}
+
+.display-btn::before {
+    background: url(/v.svg) no-repeat -256px -64px;
+}
+
+.upload-btn::before {
+    background: url(/v.svg) no-repeat -192px 0px;
+}
+
+.select-btn::before {
+    background: url(/v.svg) no-repeat -320px 0px;
 }
