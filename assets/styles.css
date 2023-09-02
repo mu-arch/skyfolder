@@ -498,20 +498,3 @@ footer {
 footer a:hover {
     text-decoration: underline;
 }
-
-ul {
-    border-top: 1px solid #e6e6e6;
-    margin: 40px 25px 0 0;
-    padding: 20px 0 0 0;
-    color: #4d4d4d;
-}
-
-ul li {
-    padding: 6px 0;
-}
-
-ul li:after {
-    content: '\xE2\x86\x92';
-    margin-left: 10px;
-    display: inline-block;
-}

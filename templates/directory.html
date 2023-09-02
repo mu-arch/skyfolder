@@ -16,7 +16,7 @@
 <body>
 <section>
     <nav>
-        <div title="Return to Filesystem Root" aria-path="{{ relative_path }}"></div>
+        <div title="Return to Fileserver Root" aria-path="{{ relative_path }}"></div>
         <div></div>
         <div title="{{ current_location_name }}">{{ current_location_name }}</div>
         <div><input contenteditable="true" placeholder="Quick search folder..."><div></div></div>
@@ -64,11 +64,11 @@
         <div><span id="fc"></span>|<span id="fsz">{{ current_location_size|safe }}</span>|<span id="qr">QR</span></div>
     </div>
 
-    <ul>
-        <li>View Mode</li>
-        <li>Upload</li>
-        <li>Manage</li>
-    </ul>
+    <div>
+        <button>View Mode</button>
+        <button>Upload</button>
+        <button>Manage</button>
+    </div>
 </div>
 
 </body>
