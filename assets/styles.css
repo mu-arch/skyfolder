@@ -89,30 +89,15 @@ nav > *:hover {
     background: linear-gradient(to top, #e7e9ef, #f0f3f8);
 }
 
-nav > div:first-of-type {
-    min-width: 51px;
-    padding: 0;
-}
 
-nav > div:first-of-type:before {
-    content: '';
-    scale: .2;
-    margin: 5px 0 0 12px;
-    width: 128px;
-    height: 128px;
-    background: url(/r.webp) no-repeat 0 0;
-    transform-origin: top left;
-    position: absolute;
-}
-
-nav > div:nth-child(2) {
+nav > div:first-child {
     border-radius: 10px 0px 0px 10px;
     padding-right: 23px;
     margin-right: 0;
     z-index: 100;
 }
 
-nav > div:nth-child(2):before {
+nav > div:first-child:before {
     content: '';
     scale: .3;
     opacity: .7;
@@ -125,7 +110,7 @@ nav > div:nth-child(2):before {
     top: 8px;
 }
 
-nav > div:nth-child(3) {
+nav > div:nth-child(2) {
     padding-left: 40px;
     max-width: 200px;
     overflow: hidden;
@@ -137,12 +122,12 @@ nav > div:nth-child(3) {
     left:-1px;
     margin-right: 9px;
 }
-nav > div:nth-child(3):hover {
+nav > div:nth-child(2):hover {
     z-index: 1000;
     border-left: 1px solid #3478F6;
 }
 
-nav > div:nth-child(3):before {
+nav > div:nth-child(2):before {
     content: '';
     scale: .3;
     opacity: .7;
@@ -155,13 +140,13 @@ nav > div:nth-child(3):before {
     top: 8px;
 }
 
-nav > div:nth-child(4) {
+nav > div:nth-child(3) {
     flex: 1;
     margin-right: 0;
     padding: 0;
 }
 
-nav > div:nth-child(4):before {
+nav > div:nth-child(3):before {
     content: '';
     scale: .3;
     width: 64px;
@@ -173,7 +158,7 @@ nav > div:nth-child(4):before {
     top: 8px;
 }
 
-nav > div:nth-child(4) > div {
+nav > div:nth-child(3) > div {
     height: 17px;
     width: 35px;
     background-color: #356eff;
@@ -183,7 +168,7 @@ nav > div:nth-child(4) > div {
     top: 9px;
 }
 
-nav > div:nth-child(4) > div:nth-child(2):before {
+nav > div:nth-child(3) > div:nth-child(2):before {
     content: 'ADV \xE2\x86\x92';
     color: #fff;
     position: absolute;
@@ -192,7 +177,7 @@ nav > div:nth-child(4) > div:nth-child(2):before {
     font-size: 6px;
 }
 
-nav > div:nth-child(4) > div:nth-child(2):after {
+nav > div:nth-child(3) > div:nth-child(2):after {
     content: '';
     scale: .1;
     filter: invert();
