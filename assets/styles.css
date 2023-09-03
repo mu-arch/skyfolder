@@ -74,7 +74,7 @@ nav > * {
     background: linear-gradient(to top, #f4f4f4, #fff);
     height: 35px;
     user-select: none;
-    margin-right: 10px;
+    margin-right: 20px;
     cursor:pointer;
     font-size: 14px;
     font-weight: bold;
@@ -120,7 +120,6 @@ nav > div:nth-child(2) {
     border-left: 1px solid transparent;
     position: relative;
     left:-1px;
-    margin-right: 9px;
 }
 nav > div:nth-child(2):hover {
     z-index: 1000;
@@ -410,10 +409,6 @@ caption span {
     white-space: nowrap;
 }
 
-#pane > div:first-child > div:last-child {
-    border-top: 1px solid #cac7c2;
-}
-
 #pane > div:first-child > div:first-child > *:last-child {
     padding: 6px;
     background-color: rgba(0, 0, 0, 0.24);
@@ -427,6 +422,10 @@ caption span {
     font-weight: 600;
 }
 
+#pane > div:first-child > div:nth-child(2) {
+    border-bottom: 1px solid #cac7c2;
+}
+
 #pane p {
     padding: 20px 10px;
     font-size: 12px;
@@ -435,6 +434,8 @@ caption span {
 }
 
 #pane > div:first-child > div:last-child {
+    display: flex;
+    justify-content: space-around;
     font-size: 10px;
     color: #6a6a6a;
     padding: 8px 0;
@@ -458,6 +459,7 @@ caption span {
 
 #qr {
     position: relative;
+    width: 36px;
 }
 
 #qr:after {
@@ -469,7 +471,7 @@ caption span {
     background: url(/v.svg) no-repeat -64px 0px;
     position: absolute;
     left: 3px;
-    top: -26px;
+    top: -25px;
 }
 
 footer {
