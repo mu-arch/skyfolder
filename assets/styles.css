@@ -139,6 +139,12 @@ nav > div:nth-child(2):before {
     top: 8px;
 }
 
+nav > div:nth-child(2) span {
+    font-weight: 300;
+    padding: 0 0 0 8px;
+    color: #6c6c6c;
+}
+
 nav > div:nth-child(3) {
     flex: 1;
     margin-right: 0;

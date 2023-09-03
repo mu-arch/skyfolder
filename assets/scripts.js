@@ -6,6 +6,10 @@ function navurl(url) {
     window.location.href = url;
 }
 
+function qs(divs) {
+    return document.querySelector(divs)
+}
+
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -214,6 +218,42 @@ var handleSearchInput = (function() {
 }
 */
 
+function navigateToParentDirectory() {
+    let currentURL = window.location.href;
+
+    // Remove trailing slashes
+    while (currentURL.endsWith('/')) {
+        currentURL = currentURL.slice(0, -1);
+    }
+
+    const lastSlashIndex = currentURL.lastIndexOf('/');
+
+    if (lastSlashIndex <= currentURL.indexOf('://') + 2) {
+        return;
+    }
+
+    const parentURL = currentURL.substring(0, lastSlashIndex);
+
+    window.location.href = parentURL + '/';
+}
+
+function appendDepthIndicator() {
+    const pathSegments = window.location.pathname.split('/').filter(segment => segment.trim() !== '');
+
+    if (pathSegments.length === 0) return;  // If at the root, return
+
+    const depthIndicator = document.createElement('span');
+    depthIndicator.innerHTML = `(+${pathSegments.length})`;
+
+    const targetElement = document.querySelector('nav div:nth-child(2)');
+    targetElement.appendChild(depthIndicator);
+}
+
+// You can call this function within the DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', appendDepthIndicator);
+
+
+
 
 
 
@@ -221,9 +261,9 @@ var handleSearchInput = (function() {
 function file_dir_manifest() {
     check_if_tbody_is_empty()
     GLOBAL_TABLE_DATA = extractTableData();
-    document.querySelector('nav input').addEventListener('input', handleSearchInput);
+    qs('nav input').addEventListener('input', handleSearchInput);
     document.getElementById("fc").innerText = `${GLOBAL_TABLE_DATA.length} files`;
-    //document.getElementById("fsz").innerText = ;
+    qs('nav > div').addEventListener('click', navigateToParentDirectory);
 }
 
 document.addEventListener('DOMContentLoaded', file_dir_manifest);
