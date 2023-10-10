@@ -5,14 +5,12 @@ use askama::Template;
 use axum::response::{Html, IntoResponse, Response};
 use hyper::Body;
 use hyper::{StatusCode};
-use tokio::fs::File;
-use axum::debug_handler;
 use crate::AppState;
 use crate::lib::fs_interaction::{DirEntry, list_dir_contents};
 use std::ffi::OsStr;
 use std::time::{SystemTime, UNIX_EPOCH};
 use bytes::Bytes;
-use crate::lib::{fs_interaction, helper};
+use crate::lib::helper;
 use crate::VERSION;
 
 pub enum ResponseWrapper {

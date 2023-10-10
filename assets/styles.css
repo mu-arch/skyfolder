@@ -477,7 +477,7 @@ caption span {
     background: url(/v.svg) no-repeat -64px 0px;
     position: absolute;
     left: 3px;
-    top: -25px;
+    top: -26px;
 }
 
 footer {
@@ -539,3 +539,22 @@ footer a:hover {
 .select-btn::before {
     background: url(/v.svg) no-repeat -320px 0px;
 }
+
+.tooltip {
+    min-width:100px;
+    position: absolute;
+    z-index:9999;
+    border-radius: 5px;
+    border: 1px solid #b8b8b8;
+    box-shadow: 0 2px 3px rgba(172, 172, 172, 0.17);
+    background: linear-gradient(to top, #f4f4f4, #fff);
+    padding:5px;
+
+}
+
+.pathbar_item {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+

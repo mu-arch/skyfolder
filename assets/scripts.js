@@ -237,23 +237,51 @@ function navigateToParentDirectory() {
     window.location.href = parentURL + '/';
 }
 
-function appendDepthIndicator() {
-    const pathSegments = window.location.pathname.split('/').filter(segment => segment.trim() !== '');
-
-    if (pathSegments.length === 0) return;  // If at the root, return
-
-    const depthIndicator = document.createElement('span');
-    depthIndicator.innerHTML = `(+${pathSegments.length})`;
-
-    const targetElement = document.querySelector('nav div:nth-child(2)');
-    targetElement.appendChild(depthIndicator);
+function extractPaths(url) {
+    const parsedUrl = new URL(url);
+     // filter(Boolean) removes any empty strings
+    return parsedUrl.pathname.split('/').filter(Boolean);
 }
 
-// You can call this function within the DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', appendDepthIndicator);
+function spawnTooltip(source, templateFn) {
+    // Check if a tooltip already exists
+    let tooltip = document.querySelector('.tooltip');
+
+    // If tooltip doesn't exist, create it
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.classList.add('tooltip');
+        document.body.appendChild(tooltip);
+    }
+
+    // Update its content
+    tooltip.innerHTML = templateFn();
+
+    source = source.getBoundingClientRect();
+
+    tooltip.style.left = source.left -3 + 'px';
+    tooltip.style.top = source.top -3 + 'px';
+
+    document.body.appendChild(tooltip);
 
 
+}
 
+function path_selector_generator() {
+    let output = "";
+    let paths = extractPaths(window.location.href)
+
+    let left_padding = 20;
+    output += `<div class='pathbar_item'>FileSystem Root</div>`
+
+    paths.forEach(path => {
+        console.log(path);
+        output += `<div class='pathbar_item' style='padding-left:${left_padding}px'>${path}</div>`
+        left_padding += 10;
+    });
+
+    return output
+}
 
 
 
@@ -264,6 +292,11 @@ function file_dir_manifest() {
     qs('nav input').addEventListener('input', handleSearchInput);
     document.getElementById("fc").innerText = `${GLOBAL_TABLE_DATA.length} files`;
     qs('nav > div').addEventListener('click', navigateToParentDirectory);
+
+    //tooltip for pathbar
+    let path_selector = document.querySelector('nav div:nth-child(2)');
+    path_selector.addEventListener('click', () => spawnTooltip(path_selector, path_selector_generator));
+
 }
 
 document.addEventListener('DOMContentLoaded', file_dir_manifest);
