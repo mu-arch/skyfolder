@@ -28,8 +28,8 @@ include!(concat!(env!("OUT_DIR"), "/constants.rs"));
 async fn main() {
 
     println!("Starting up \x1B[95mSkyFolder\x1B[0m {VERSION}\n");
-    println!("✅ If you need a feature or find a bug let me know in the Github issues tab.");
-    println!("⭐ If you like the program please star it on Github as it helps me.");
+    println!("✅ If you need a feature or find a bug let me know in the GitHub issues tab.");
+    println!("⭐ If you like the program please star it on GitHub as it helps me.");
 
     //start the actual application
     if let Err(e) = init().await {
