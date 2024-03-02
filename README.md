@@ -82,4 +82,4 @@ It's not complete as of Sep 2, 2023. Expect updates soon.
 
 ## Limitations
 
-1. Some functionality requires Javascript to work
+1. Some functionality requires JavaScript to work
