@@ -73,8 +73,12 @@ async fn init() -> Result<(), AppErrorInternal> {
     }
 
     //todo only show this if the user has upnp mode enabled. remember to set port to whatever upnp negotiates
-    println!("Available on WAN (Public internet) at:");
-    println!("    http://{}:30080", helper::get_public_ip().await.unwrap_or("Failed to determine IP".to_string()));
+    let public_ip = helper::get_public_ip().await.unwrap_or("".to_string());
+
+    if public_ip != "" {
+        println!("Available on WAN (Public internet) at:");
+        println!("    http://{}:30080", public_ip);
+    }
 
 
     let app = axum::Router::new()
