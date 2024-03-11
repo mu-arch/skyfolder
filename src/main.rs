@@ -28,8 +28,8 @@ include!(concat!(env!("OUT_DIR"), "/constants.rs"));
 async fn main() {
 
     println!("Starting up \x1B[95mSkyFolder\x1B[0m {VERSION}\n");
-    println!("✅ If you need a feature or find a bug let me know in the Github issues tab.");
-    println!("⭐ If you like the program please star it on Github as it helps me.");
+    println!("✅ If you need a feature or find a bug let me know in the GitHub issues tab.");
+    println!("⭐ If you like the program please star it on GitHub as it helps me.");
 
     //start the actual application
     if let Err(e) = init().await {
@@ -73,8 +73,12 @@ async fn init() -> Result<(), AppErrorInternal> {
     }
 
     //todo only show this if the user has upnp mode enabled. remember to set port to whatever upnp negotiates
-    println!("Available on WAN (Public internet) at:");
-    println!("    http://{}:30080", helper::get_public_ip().await.unwrap_or("Failed to determine IP".to_string()));
+    let public_ip = helper::get_public_ip().await.unwrap_or("".to_string());
+
+    if public_ip != "" {
+        println!("Available on WAN (Public internet) at:");
+        println!("    http://{}:30080", public_ip);
+    }
 
 
     let app = axum::Router::new()
